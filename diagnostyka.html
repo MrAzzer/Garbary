@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Diagnostyka - Garbary Clinic">
+    <title>Diagnostyka - Garbary Clinic</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #082f61;
+            --secondary: #00a3e0;
+            --light: #f8f9fa;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #212529;
+            padding-top: 80px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+/* ===================== NOWY HEADER ===================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-family: 'Michroma', sans-serif;
+            font-weight: 200;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            border-bottom: 1px solid var(--light-gray);
+            list-style: none;
+        }
+        
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 500;
+            color: var(--dark);
+            text-transform: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background-color: var(--light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+  <!-- Nowy Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/07/GarbaryClinic-150x150.webp" alt="Garbary Clinic">
+            </div>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="\" class="active">Home</a></li>
+                    <li><a href="#about">O nas</a></li>
+                    <li class="dropdown">
+                        <a href="#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#specialists" data-filter="all">Wszyscy</a></li>
+                            <li><a href="#specialists" data-filter="lekarz">Lekarze</a></li>
+                            <li><a href="#specialists" data-filter="psycholog">Psycholodzy</a></li>
+                            <li><a href="#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
+                            <li><a href="#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
+                            <li><a href="#specialists" data-filter="diagnosta">Diagności</a></li>
+                            <li><a href="#specialists" data-filter="dietetyk">Dietetycy</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#services">Oferta <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="diagnostyka.html">Diagnostyka</a></li>
+                            <li><a href="zabiegi.html">Zabiegi</a></li>
+                            <li><a href="urorehabilitacja.html">Urorehabilitacja</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="\#formen">Dla Mężczyzn</a></li>
+                    <li><a href="cennik.html">Cennik</a></li>
+                    <li><a href="\#contact">Kontakt</a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic"></a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Diagnostic Services -->
+    <section class="section">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 50px; font-family: 'Michroma', sans-serif; color: var(--primary);">Diagnostyka</h1>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Badania Laboratoryjne</h3>
+                    <p>Kompleksowe badania krwi, moczu oraz specjalistyczne testy diagnostyczne</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>USG</h3>
+                    <p>Badania ultrasonograficzne jamy brzusznej, tarczycy, piersi i innych narządów</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h3>Diagnostyka Obrazowa</h3>
+                    <p>Nowoczesne metody obrazowania medycznego dla precyzyjnej diagnozy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Garbary Clinic</h4>
+                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p>ul. Garbary 5/LU3, 85-229 Bydgoszcz<br>+48 570 555 050<br>kontakt@garbaryclinic.pl</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garbary Clinic. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

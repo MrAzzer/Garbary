@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cennik - Garbary Clinic">
+    <title>Cennik - Garbary Clinic</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #082f61;
+            --secondary: #00a3e0;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #212529;
+            padding-top: 80px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        /* ===================== NOWY HEADER ===================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary);
+            font-family: 'Michroma', sans-serif;
+            font-weight: 200;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            border-bottom: 1px solid var(--light);
+            list-style: none;
+        }
+        
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 500;
+            color: var(--primary);
+            text-transform: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .dropdown-menu a:hover {
+            color: var(--primary);
+            background-color: var(--light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+        }
+        
+        /* ===================== PRICING SECTION ===================== */
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .pricing-header h1 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            background-color: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .price-category {
+            margin-bottom: 60px;
+            display: none;
+        }
+        
+        .price-category.active {
+            display: block;
+        }
+        
+        .category-title {
+            font-family: 'Michroma', sans-serif;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .price-table th,
+        .price-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .price-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            font-family: 'Michroma', sans-serif;
+        }
+        
+        .price-table tr:hover {
+            background-color: var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .price-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+  <!-- Nowy Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/07/GarbaryClinic-150x150.webp" alt="Garbary Clinic">
+            </div>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">O nas</a></li>
+                    <li class="dropdown">
+                        <a href="#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#specialists" data-filter="all">Wszyscy</a></li>
+                            <li><a href="#specialists" data-filter="lekarz">Lekarze</a></li>
+                            <li><a href="#specialists" data-filter="psycholog">Psycholodzy</a></li>
+                            <li><a href="#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
+                            <li><a href="#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
+                            <li><a href="#specialists" data-filter="diagnosta">Diagności</a></li>
+                            <li><a href="#specialists" data-filter="dietetyk">Dietetycy</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#services">Oferta <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="diagnostyka.html">Diagnostyka</a></li>
+                            <li><a href="zabiegi.html">Zabiegi</a></li>
+                            <li><a href="urorehabilitacja.html">Urorehabilitacja</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#formen">Dla Mężczyzn</a></li>
+                    <li><a href="cennik.html">Cennik</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic"></a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Pricing Section -->
+    <section class="section">
+        <div class="container">
+            <div class="pricing-header">
+                <h1>Cennik</h1>
+                <p>Zapoznaj się z naszymi usługami i cenami. Wybierz kategorię, aby zobaczyć szczegóły.</p>
+            </div>
+            
+            <div class="category-nav" id="categoryNav">
+                <button class="category-btn active" data-category="andrologia">Andrologia</button>
+                <button class="category-btn" data-category="urologia">Urologia</button>
+                <button class="category-btn" data-category="kardiologia">Kardiologia</button>
+                <button class="category-btn" data-category="fizjoterapia">Fizjoterapia</button>
+                <button class="category-btn" data-category="ginekologia">Ginekologia</button>
+                <button class="category-btn" data-category="psychologia">Psychologia</button>
+                <button class="category-btn" data-category="chirurgia">Chirurgia</button>
+                <button class="category-btn" data-category="diagnostyka">Diagnostyka</button>
+            </div>
+            
+            <!-- Andrologia -->
+            <div class="price-category active" id="andrologia">
+                <h2 class="category-title">Usługi Andrologiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja andrologiczna</td>
+                            <td>400 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja andrologiczna online</td>
+                            <td>350 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Urologia -->
+            <div class="price-category" id="urologia">
+                <h2 class="category-title">Usługi Urologiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja urologiczna</td>
+                            <td>200 zł - 400 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja urologiczna online</td>
+                            <td>350 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja urologiczna + USG</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG jąder</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG pachwiny</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Fizjoterapia urologiczna (pierwsza wizyta)</td>
+                            <td>200 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Kardiologia -->
+            <div class="price-category" id="kardiologia">
+                <h2 class="category-title">Usługi Kardiologiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja kardiologiczna</td>
+                            <td>300 zł</td>
+                        </tr>
+                        <tr>
+                            <td>ECHO serca</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>EKG - elektrokardiografia</td>
+                            <td>50 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Holter EKG</td>
+                            <td>200 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja kardiologiczna + ECHO serca</td>
+                            <td>500 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja kardiologiczna + EKG + ECHO serca</td>
+                            <td>550 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Fizjoterapia -->
+            <div class="price-category" id="fizjoterapia">
+                <h2 class="category-title">Usługi Fizjoterapeutyczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja fizjoterapeutyczna (pierwsza wizyta)</td>
+                            <td>200 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja fizjoterapeutyczna (kolejna wizyta)</td>
+                            <td>150 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Masaż leczniczy</td>
+                            <td>130 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Terapia stawów skroniowo-żuchwowych</td>
+                            <td>200 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Terapia blizn</td>
+                            <td>200 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Fizjoterapia uroginekologiczna (pierwsza wizyta)</td>
+                            <td>200 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Ginekologia -->
+            <div class="price-category" id="ginekologia">
+                <h2 class="category-title">Usługi Ginekologiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja ginekologiczna</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja ginekologiczna online</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja ginekologiczna + USG</td>
+                            <td>350 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja położnicza</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja położnicza + USG</td>
+                            <td>350 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Psychologia -->
+            <div class="price-category" id="psychologia">
+                <h2 class="category-title">Usługi Psychologiczne i Seksuologiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja psychologiczna</td>
+                            <td>220 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja psychologiczna online</td>
+                            <td>220 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja seksuologiczna</td>
+                            <td>220 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Terapia seksuologiczna</td>
+                            <td>220 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Terapia seksuologiczna dla par</td>
+                            <td>280 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja seksuologiczna dla par</td>
+                            <td>280 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Edukacja seksualna</td>
+                            <td>220 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Chirurgia -->
+            <div class="price-category" id="chirurgia">
+                <h2 class="category-title">Usługi Chirurgiczne</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konsultacja chirurgiczna</td>
+                            <td>Od 210 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Kriochirurgia</td>
+                            <td>Od 200 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Szycie rany</td>
+                            <td>150 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Usunięcie kaszaka</td>
+                            <td>700 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Zdejmowanie szwów</td>
+                            <td>150 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Usunięcie paznokcia wrastającego</td>
+                            <td>500 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Leczenie zanokcicy lub zastrzału w znieczuleniu miejscowym</td>
+                            <td>500 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Diagnostyka -->
+            <div class="price-category" id="diagnostyka">
+                <h2 class="category-title">Diagnostyka</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Usługa</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>USG jamy brzusznej</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG ślinianek</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG tarczycy</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG węzłów chłonnych</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG tkanek miękkich</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>USG jam opłucnowych</td>
+                            <td>250 zł</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultacja dermatologiczna + dermatoskopia</td>
+                            <td>250 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Garbary Clinic</h4>
+                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p>ul. Garbary 5/LU3, 85-229 Bydgoszcz<br>+48 570 555 050<br>kontakt@garbaryclinic.pl</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garbary Clinic. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Category navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const priceCategories = document.querySelectorAll('.price-category');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons and categories
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    priceCategories.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding category
+                    const categoryId = this.getAttribute('data-category');
+                    document.getElementById(categoryId).classList.add('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
