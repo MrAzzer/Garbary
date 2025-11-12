@@ -23,6 +23,9 @@
             --secondary: #00a3e0;
             --light: #f8f9fa;
             --white: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --border-radius: 8px;
         }
         
         * {
@@ -46,6 +49,13 @@
         
         .section {
             padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Michroma', sans-serif;
+            color: var(--primary);
         }
         
        /* ===================== NOWY HEADER ===================== */
@@ -96,7 +106,7 @@
         
         .nav-menu a {
             text-decoration: none;
-            color: var(--primary-blue);
+            color: var(--primary);
             font-family: 'Michroma', sans-serif;
             font-weight: 200;
             font-size: 0.8rem;
@@ -108,7 +118,7 @@
         }
         
         .nav-menu a:hover {
-            color: var(--accent-gold);
+            color: var(--secondary);
         }
         
         .nav-menu a::after {
@@ -118,7 +128,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: var(--accent-gold);
+            background-color: var(--secondary);
             transition: var(--transition);
         }
         
@@ -153,7 +163,7 @@
         
         .dropdown-menu li {
             margin: 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light);
             list-style: none;
         }
         
@@ -165,7 +175,7 @@
             display: block;
             padding: 12px 20px;
             font-weight: 500;
-            color: var(--dark);
+            color: var(--primary);
             text-transform: none;
             font-family: 'Montserrat', sans-serif;
         }
@@ -180,15 +190,14 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--primary-blue);
+            color: var(--primary);
             cursor: pointer;
             transition: var(--transition);
         }
         
         .mobile-menu-btn:hover {
-            color: var(--accent-gold);
+            color: var(--secondary);
         }
-        
         
         /* Content */
         .content-grid {
@@ -203,6 +212,40 @@
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Urorehabilitacja Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .service-card p {
+            color: #555;
+            line-height: 1.7;
         }
         
         /* Footer */
@@ -274,7 +317,7 @@
     <!-- Urorehabilitacja Section -->
     <section class="section">
         <div class="container">
-            <h1 style="text-align: center; margin-bottom: 50px; font-family: 'Michroma', sans-serif; color: var(--primary);">Urorehabilitacja</h1>
+            <h1 class="section-title">Urorehabilitacja</h1>
             
             <div class="content-grid">
                 <div class="content-text">
@@ -289,6 +332,54 @@
                 </div>
                 <div class="content-image">
                     <img src="/zdj/urorehabilitacja.webp" alt="Urorehabilitacja">
+                </div>
+            </div>
+            
+            <!-- Sekcja z usługami urorehabilitacji -->
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Rehabilitacja zaburzeń erekcji</h3>
+                    <p>Kompleksowa terapia zaburzeń erekcji z wykorzystaniem nowoczesnych metod fizjoterapeutycznych. Obejmuje ćwiczenia mięśni dna miednicy, terapię manualną oraz techniki relaksacyjne. Program dostosowany indywidualnie do potrzeb pacjenta.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rehabilitacja nietrzymania moczu</h3>
+                    <p>Specjalistyczna terapia mająca na celu przywrócenie kontroli nad pęcherzem moczowym. Wykorzystujemy ćwiczenia mięśni Kegla, biofeedback, elektrostymulację oraz trening pęcherza moczowego. Skuteczna zarówno u kobiet, jak i mężczyzn.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rehabilitacja pooperacyjna</h3>
+                    <p>Kompleksowa opieka po zabiegach urologicznych i ginekologicznych. Program rehabilitacji przyspiesza gojenie, redukuje obrzęki i ból, przywraca prawidłową funkcję mięśni dna miednicy oraz zapobiega powikłaniom pooperacyjnym.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rehabilitacja poporodowa</h3>
+                    <p>Specjalistyczna opieka dla kobiet po porodzie, ukierunkowana na regenerację mięśni dna miednicy. Program obejmuje ćwiczenia wzmacniające, terapię blizn po nacięciu krocza lub cięciu cesarskim oraz profilaktykę nietrzymania moczu.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rehabilitacja mięśni dna miednicy</h3>
+                    <p>Terapia mająca na celu wzmocnienie, rozluźnienie lub koordynację pracy mięśni dna miednicy. Stosujemy indywidualnie dobrane ćwiczenia, terapię manualną oraz nowoczesne techniki fizjoterapeutyczne dostosowane do konkretnych potrzeb pacjenta.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rehabilitacja uroginekologiczna</h3>
+                    <p>Specjalistyczna terapia skierowana do kobiet z problemami uroginekologicznymi. Obejmuje leczenie obniżenia narządów miednicy mniejszej, nietrzymania moczu, bolesnych stosunków płciowych oraz dolegliwości bólowych w obrębie miednicy.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Pęcherz nadreaktywny</h3>
+                    <p>Terapia mająca na celu zmniejszenie nadreaktywności pęcherza moczowego. Program obejmuje trening pęcherza, modyfikację stylu życia, ćwiczenia relaksacyjne oraz techniki kontroli naglących parć. Skutecznie redukuje częstotliwość i pilność oddawania moczu.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Infekcje układu moczowego</h3>
+                    <p>Kompleksowe podejście do profilaktyki i leczenia nawracających infekcji układu moczowego. Obejmuje edukację dotyczącą higieny, technik prawidłowego opróżniania pęcherza, ćwiczenia poprawiające ukrwienie oraz wsparcie w modyfikacji nawyków żywieniowych.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Infekcje urogenitalne</h3>
+                    <p>Terapia wspomagająca leczenie infekcji układu moczowo-płciowego. Skupiamy się na poprawie lokalnej odporności, normalizacji flory bakteryjnej oraz edukacji w zakresie profilaktyki nawrotów. Program dostosowany do indywidualnych potrzeb pacjenta.</p>
                 </div>
             </div>
         </div>
