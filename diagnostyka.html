@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Diagnostyka - Garbary Clinic">
-    <title>Diagnostyka - Garbary Clinic</title>
+    <meta name="description" content="Kompleksowa diagnostyka medyczna w Garbary Clinic - badania laboratoryjne, USG, badania nasienia, kardiologia, endokrynologia. Nowoczesny sprzęt i doświadczeni specjaliści.">
+    <meta name="keywords" content="diagnostyka, badania laboratoryjne, USG, badania nasienia, kardiologia, endokrynologia, Garbary Clinic, Bydgoszcz">
+    <meta name="author" content="Garbary Clinic">
+    <title>Diagnostyka - Kompleksowe Badania Medyczne | Garbary Clinic</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Diagnostyka - Kompleksowe Badania Medyczne | Garbary Clinic">
+    <meta property="og:description" content="Nowoczesna diagnostyka medyczna: badania laboratoryjne, USG, badania nasienia, kardiologia, endokrynologia. Doświadczeni specjaliści w Bydgoszczy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://garbaryclinic.pl/diagnostyka.html">
+    <meta property="og:image" content="https://srv88227.seohost.com.pl/wp-content/uploads/2025/07/GarbaryClinic-150x150.webp">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://garbaryclinic.pl/diagnostyka.html">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +30,10 @@
             --secondary: #00a3e0;
             --light: #f8f9fa;
             --white: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --accent: #3a46d070;
         }
         
         * {
@@ -43,7 +59,7 @@
             padding: 80px 0;
         }
         
-/* ===================== NOWY HEADER ===================== */
+        /* ===================== NOWY HEADER ===================== */
         .header {
             position: fixed;
             top: 0;
@@ -91,7 +107,7 @@
         
         .nav-menu a {
             text-decoration: none;
-            color: var(--primary-blue);
+            color: var(--primary);
             font-family: 'Michroma', sans-serif;
             font-weight: 200;
             font-size: 0.8rem;
@@ -103,7 +119,7 @@
         }
         
         .nav-menu a:hover {
-            color: var(--accent-gold);
+            color: var(--secondary);
         }
         
         .nav-menu a::after {
@@ -113,7 +129,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: var(--accent-gold);
+            background-color: var(--secondary);
             transition: var(--transition);
         }
         
@@ -148,7 +164,7 @@
         
         .dropdown-menu li {
             margin: 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light);
             list-style: none;
         }
         
@@ -160,7 +176,7 @@
             display: block;
             padding: 12px 20px;
             font-weight: 500;
-            color: var(--dark);
+            color: var(--primary);
             text-transform: none;
             font-family: 'Montserrat', sans-serif;
         }
@@ -175,66 +191,484 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--primary-blue);
+            color: var(--primary);
             cursor: pointer;
             transition: var(--transition);
         }
         
         .mobile-menu-btn:hover {
-            color: var(--accent-gold);
+            color: var(--secondary);
         }
         
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .service-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        /* ===================== DIAGNOSTICS SECTION ===================== */
+        .diagnostics-header {
             text-align: center;
-            transition: transform 0.3s ease;
+            margin-bottom: 60px;
+            position: relative;
         }
         
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
+        .diagnostics-header h1 {
+            font-family: 'Michroma', sans-serif;
             color: var(--primary);
             margin-bottom: 20px;
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding: 0 30px;
         }
         
-        /* Footer */
-        footer {
-            background-color: var(--primary);
+        .diagnostics-header h1::before,
+        .diagnostics-header h1::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: translateY(-50%);
+        }
+        
+        .diagnostics-header h1::before {
+            left: -120px;
+            background: linear-gradient(to right, transparent, var(--primary), var(--accent));
+        }
+        
+        .diagnostics-header h1::after {
+            right: -120px;
+            background: linear-gradient(to left, transparent, var(--primary), var(--accent));
+        }
+        
+        .diagnostics-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        /* ULEPSZONY UKŁAD KAFELKÓW */
+        .diagnostics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+        
+        .diagnostic-card {
+            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(8, 47, 97, 0.1);
+        }
+        
+        .diagnostic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+        
+        .diagnostic-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .diagnostic-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(8, 47, 97, 0.1) 0%, rgba(0, 163, 224, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 35px auto 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+        
+        .diagnostic-card:hover .card-icon {
+            transform: scale(1.15) rotate(5deg);
+            background: linear-gradient(135deg, rgba(8, 47, 97, 0.15) 0%, rgba(0, 163, 224, 0.15) 100%);
+            box-shadow: 0 10px 25px rgba(8, 47, 97, 0.2);
+        }
+        
+        .diagnostic-card:hover .card-icon::before {
+            left: 100%;
+        }
+        
+        .card-icon i {
+            font-size: 2.8rem;
+            color: var(--primary);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .diagnostic-card:hover .card-icon i {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 0 35px 35px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--primary);
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 1.5rem;
+            line-height: 1.3;
+            min-height: 3.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-content p {
+            color: #555;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .card-features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        
+        .card-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            padding-left: 30px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .card-features li:hover {
+            background: rgba(8, 47, 97, 0.03);
+            padding-left: 35px;
+        }
+        
+        .card-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .card-features li:hover::before {
+            transform: scale(1.2);
+            color: var(--primary);
+        }
+        
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--white);
-            padding: 50px 0 20px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .card-button:hover::before {
+            left: 100%;
+        }
+        
+        .card-button:hover {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 47, 97, 0.2);
+        }
+        
+        /* Additional Info Section */
+        .additional-info {
+            background: linear-gradient(135deg, var(--light) 0%, #e8f4f8 100%);
+            padding: 80px 0;
             margin-top: 80px;
+            position: relative;
+        }
+        
+        .additional-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .info-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(8, 47, 97, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .info-card h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .info-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        /* ULEPSZONA STOPKA */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2b5a 100%);
+            color: var(--white);
+            padding: 60px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--white));
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-family: 'Michroma', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsywność */
+        @media (max-width: 1200px) {
+            .diagnostics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .diagnostics-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .diagnostics-header h1::before,
+            .diagnostics-header h1::after {
+                width: 50px;
+            }
+            
+            .diagnostics-header h1::before {
+                left: -70px;
+            }
+            
+            .diagnostics-header h1::after {
+                right: -70px;
+            }
+            
+            .card-content {
+                padding: 0 25px 25px;
+            }
+            
+            .diagnostics-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .diagnostics-header h1 {
+                font-size: 1.8rem;
+                padding: 0 20px;
+            }
+            
+            .diagnostics-header h1::before,
+            .diagnostics-header h1::after {
+                display: none;
+            }
+            
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                margin: 25px auto 20px;
+            }
+            
+            .card-icon i {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
-  <!-- Nowy Header -->
+    <!-- Nowy Header -->
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
@@ -245,66 +679,202 @@
             
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="\" class="active">Home</a></li>
-                    <li><a href="#about">O nas</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">O nas</a></li>
                     <li class="dropdown">
-                        <a href="#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
+                        <a href="index.html#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#specialists" data-filter="all">Wszyscy</a></li>
-                            <li><a href="#specialists" data-filter="lekarz">Lekarze</a></li>
-                            <li><a href="#specialists" data-filter="psycholog">Psycholodzy</a></li>
-                            <li><a href="#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
-                            <li><a href="#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
-                            <li><a href="#specialists" data-filter="diagnosta">Diagności</a></li>
-                            <li><a href="#specialists" data-filter="dietetyk">Dietetycy</a></li>
+                            <li><a href="index.html#specialists" data-filter="all">Wszyscy</a></li>
+                            <li><a href="index.html#specialists" data-filter="lekarz">Lekarze</a></li>
+                            <li><a href="index.html#specialists" data-filter="psycholog">Psycholodzy</a></li>
+                            <li><a href="index.html#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
+                            <li><a href="index.html#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
+                            <li><a href="index.html#specialists" data-filter="diagnosta">Diagności</a></li>
+                            <li><a href="index.html#specialists" data-filter="dietetyk">Dietetycy</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#services">Oferta <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="diagnostyka.html">Diagnostyka</a></li>
+                            <li><a href="diagnostyka.html" class="active">Diagnostyka</a></li>
                             <li><a href="zabiegi.html">Zabiegi</a></li>
                             <li><a href="urorehabilitacja.html">Urorehabilitacja</a></li>
                         </ul>
                     </li>
-                    <li><a href="\#formen">Dla Mężczyzn</a></li>
+                    <li><a href="index.html#formen">Dla Mężczyzn</a></li>
                     <li><a href="cennik.html">Cennik</a></li>
-                    <li><a href="\#contact">Kontakt</a></li>
-                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic"></a></li>
-                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">FAQ</a></li>
+                    <li><a href="index.html#contact">Kontakt</a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">ZnanyLekarz</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Diagnostic Services -->
+    <!-- Diagnostics Section -->
     <section class="section">
         <div class="container">
-            <h1 style="text-align: center; margin-bottom: 50px; font-family: 'Michroma', sans-serif; color: var(--primary);">Diagnostyka</h1>
+            <div class="diagnostics-header">
+                <h1>Diagnostyka</h1>
+                <p>Nowoczesne i kompleksowe badania diagnostyczne w Garbary Clinic. Zapewniamy precyzyjną diagnostykę z wykorzystaniem najnowocześniejszego sprzętu i metod laboratoryjnych pod okiem doświadczonych specjalistów.</p>
+            </div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-microscope"></i>
+            <div class="diagnostics-grid">
+                <!-- Badania Laboratoryjne -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
+                        <i class="fas fa-vial"></i>
                     </div>
-                    <h3>Badania Laboratoryjne</h3>
-                    <p>Kompleksowe badania krwi, moczu oraz specjalistyczne testy diagnostyczne</p>
+                    <div class="card-content">
+                        <h3>Badania Laboratoryjne</h3>
+                        <p>Kompleksowa diagnostyka laboratoryjna z krwi, moczu i innych materiałów biologicznych. Nowoczesne analizy pozwalające na precyzyjną ocenę stanu zdrowia.</p>
+                        
+                        <ul class="card-features">
+                            <li>Morfologia krwi z rozmazem</li>
+                            <li>Biochemia krwi (glukoza, lipidogram)</li>
+                            <li>Badania hormonalne</li>
+                            <li>Markery nowotworowe</li>
+                            <li>Badania immunologiczne</li>
+                            <li>Testy alergologiczne</li>
+                        </ul>
+                        
+                        <a href="cennik.html#laboratoryjne" class="card-button">Zobacz cennik</a>
+                    </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
+                <!-- Badania USG -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Badania USG</h3>
+                        <p>Nowoczesne badania ultrasonograficzne wykonywane na aparatach wysokiej klasy przez doświadczonych specjalistów. Bezpieczna i nieinwazyjna metoda diagnostyczna.</p>
+                        
+                        <ul class="card-features">
+                            <li>USG jamy brzusznej</li>
+                            <li>USG tarczycy i szyi</li>
+                            <li>USG jąder i moszny</li>
+                            <li>USG prostaty (TRUS)</li>
+                            <li>USG Doppler naczyń</li>
+                            <li>USG stawów i tkanek miękkich</li>
+                        </ul>
+                        
+                        <a href="cennik.html#usg" class="card-button">Zobacz cennik</a>
+                    </div>
+                </div>
+                
+                <!-- Badania Nasienia -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Badania Nasienia</h3>
+                        <p>Specjalistyczne badania nasienia według standardów WHO. Kompleksowa ocena płodności męskiej z uwzględnieniem wszystkich parametrów spermiogramu.</p>
+                        
+                        <ul class="card-features">
+                            <li>Podstawowe badanie nasienia</li>
+                            <li>Badanie morfologii plemników</li>
+                            <li>Test żywotności plemników</li>
+                            <li>Badanie przeciwciał przeciwplemnikowych</li>
+                            <li>Badanie fragmentacji DNA</li>
+                            <li>Posiew nasienia</li>
+                        </ul>
+                        
+                        <a href="cennik.html#nasienie" class="card-button">Zobacz cennik</a>
+                    </div>
+                </div>
+                
+                <!-- Niepłodność Męska -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Niepłodność Męska</h3>
+                        <p>Zaawansowana diagnostyka niepłodności męskiej. Kompleksowe podejście do problemów z płodnością z wykorzystaniem najnowszych metod diagnostycznych.</p>
+                        
+                        <ul class="card-features">
+                            <li>Konsultacja andrologiczna</li>
+                            <li>Badania hormonalne</li>
+                            <li>Badania genetyczne</li>
+                            <li>Diagnostyka infekcji</li>
+                            <li>Ocena funkcji seksualnych</li>
+                            <li>Terapia wspomagająca</li>
+                        </ul>
+                        
+                        <a href="cennik.html#nieplodnosc" class="card-button">Zobacz cennik</a>
+                    </div>
+                </div>
+                
+                <!-- Diagnostyka Kardiologiczna -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3>USG</h3>
-                    <p>Badania ultrasonograficzne jamy brzusznej, tarczycy, piersi i innych narządów</p>
+                    <div class="card-content">
+                        <h3>Diagnostyka Kardiologiczna</h3>
+                        <p>Kompleksowa ocena układu sercowo-naczyniowego. Nowoczesne badania pozwalające na wczesne wykrycie chorób układu krążenia.</p>
+                        
+                        <ul class="card-features">
+                            <li>EKG spoczynkowe i wysiłkowe</li>
+                            <li>Holter EKG i ciśnieniowy</li>
+                            <li>Echokardiografia</li>
+                            <li>Badanie lipidogramu</li>
+                            <li>Testy obciążeniowe</li>
+                            <li>Konsultacja kardiologiczna</li>
+                        </ul>
+                        
+                        <a href="cennik.html#kardiologia" class="card-button">Zobacz cennik</a>
+                    </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-x-ray"></i>
+                <!-- Diagnostyka Endokrynologiczna -->
+                <div class="diagnostic-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Diagnostyka Obrazowa</h3>
-                    <p>Nowoczesne metody obrazowania medycznego dla precyzyjnej diagnozy</p>
+                    <div class="card-content">
+                        <h3>Diagnostyka Endokrynologiczna</h3>
+                        <p>Specjalistyczne badania hormonalne i metaboliczne. Ocena funkcji gruczołów dokrewnych i leczenie zaburzeń hormonalnych.</p>
+                        
+                        <ul class="card-features">
+                            <li>Badania tarczycy (TSH, FT3, FT4)</li>
+                            <li>Diagnostyka chorób nadnerczy</li>
+                            <li>Badania hormonów płciowych</li>
+                            <li>Ocena metabolizmu glukozy</li>
+                            <li>Testy dynamiczne</li>
+                            <li>Konsultacja endokrynologiczna</li>
+                        </ul>
+                        
+                        <a href="cennik.html#endokrynologia" class="card-button">Zobacz cennik</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Additional Info Section -->
+    <section class="additional-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Przygotowanie do badań</h3>
+                    <p>Dowiedz się, jak prawidłowo przygotować się do poszczególnych badań diagnostycznych, aby wyniki były wiarygodne i miarodajne.</p>
+                    <a href="faq.html#przygotowanie" class="card-button" style="margin-top: 15px;">Czytaj więcej</a>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Terminy badań</h3>
+                    <p>Badania diagnostyczne wykonujemy w dogodnych dla Pacjentów terminach. Szybka rejestracja online i telefoniczna bez zbędnych kolejek.</p>
+                    <a href="index.html#contact" class="card-button" style="margin-top: 15px;">Umów wizytę</a>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Wyniki badań</h3>
+                    <p>Wyniki badań dostępne są w formie elektronicznej oraz papierowej. Bezpłatna konsultacja z lekarzem po otrzymaniu wyników.</p>
+                    <a href="faq.html#wyniki" class="card-button" style="margin-top: 15px;">Więcej informacji</a>
                 </div>
             </div>
         </div>
@@ -316,11 +886,23 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h4>Garbary Clinic</h4>
-                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną.</p>
+                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną na najwyższym poziomie w Bydgoszczy.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/p/Centrum-Medyczne-Garbary-Clinic-61572890159023/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/garbary_clinic" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Kontakt</h4>
-                    <p>ul. Garbary 5/LU3, 85-229 Bydgoszcz<br>+48 570 555 050<br>kontakt@garbaryclinic.pl</p>
+                    <p><strong>Adres:</strong><br>ul. Garbary 5/LU3<br>85-229 Bydgoszcz</p>
+                    <p><strong>Telefon:</strong><br>+48 570 555 050</p>
+                    <p><strong>Email:</strong><br>kontakt@garbaryclinic.pl</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Godziny otwarcia</h4>
+                    <p><strong>Poniedziałek - Piątek:</strong><br>8:00 - 20:00</p>
+                    <p><strong>Sobota:</strong><br>9:00 - 14:00</p>
+                    <p><strong>Niedziela:</strong><br>Zamknięte</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -328,5 +910,17 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

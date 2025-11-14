@@ -28,1696 +28,1835 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
-    <style>
-        :root {
-            --primary: #082f61;
-            --primary-dark: #0d2b5a;
-            --primary-light: #2a6fd6;
-            --secondary: #00a3e0;
-            --accent: #3a46d070;
-            --light: #f8f9fa;
-            --dark: #0a355e;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --white: #ffffff;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --border-radius: 8px;
-            
-            /* Nowe zmienne z drugiego kodu */
-            --primary-blue: #335ea0;
-            --secondary-blue: #32589b;
-            --light-blue: #60769c;
-            --sand: #faf5f0;
-            --light-sand: #f7eee6;
-            --accent-gold: #ffffffde;
-            --dark-text: #1d1d1d;
-            --light-text: #7b90a7;
-            --transition-slow: all 0.6s ease;
+   <style>
+    :root {
+        --primary: #082f61;
+        --primary-dark: #0d2b5a;
+        --primary-light: #2a6fd6;
+        --secondary: #00a3e0;
+        --accent: #1b82ff63;
+        --light: #f8f9fa;
+        --dark: #0a355e;
+        --gray: #6c757d;
+        --light-gray: #e9ecef;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        --transition: all 0.3s ease;
+        --border-radius: 8px;
+        
+        /* Nowe zmienne z drugiego kodu */
+        --primary-blue: #335ea0;
+        --secondary-blue: #32589b;
+        --light-blue: #60769c;
+        --sand: #faf5f0;
+        --light-sand: #f7eee6;
+        --accent-gold: #ffffffde;
+        --dark-text: #1d1d1d;
+        --light-text: #7b90a7;
+        --transition-slow: all 0.6s ease;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--dark);
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+        overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Michroma', 'Montserrat', sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        position: relative;
+        list-style: none;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    h3 {
+        font-size: 1.6rem;
+    }
+    
+    h4 {
+        font-size: 1.3rem;
+    }
+    
+    h5 {
+        font-size: 1.2rem;
+    }
+    
+    p {
+        margin-bottom: 1rem;
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        border-radius: var(--border-radius);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+    }
+    
+    .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+    
+    .section {
+        padding: 100px 0;
+    }
+
+    /* Gradient backgrounds for sections */
+    .section-light {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    }
+    
+    .section-dark {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+        color: var(--white);
+    }
+    
+    /* ===================== TYTUŁ Z GRADIENTOWYM TŁEM ===================== */
+    .section-title {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .section-title h2 {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1px;
+        padding: 1px 20px;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Lewa część linii */
+    .section-title::before {
+        content: "";
+        position: absolute;
+        top: -5%;
+        left: 15px;
+        width: 100%; /* Do początku tekstu */
+        height: 2px;
+        background: linear-gradient(to right, 
+            transparent 0%, 
+            var(--primary) 30%, 
+            var(--accent) 100%);
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    /* Prawa część linii */
+    .section-title::after {
+        content: "";
+        position: absolute;
+        top: 45%;
+        right: 15px;
+        width: 100%; /* Od końca tekstu */
+        height: 2px;
+        background: linear-gradient(to left, 
+            transparent 0%, 
+            var(--primary) 30%, 
+            var(--accent) 100%);
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    .section-title p {
+        max-width: 700px;
+        margin: 40px auto 0;
+        color: var(--gray);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Wersja dla ciemnych sekcji */
+    .section-dark .section-title::before {
+        background: linear-gradient(to right, 
+            transparent 0%, 
+            var(--accent-gold) 40%, 
+            var(--light-blue) 90%);
+    }
+
+    .section-dark .section-title::after {
+        background: linear-gradient(to left, 
+            transparent 0%, 
+            var(--white) 40%, 
+            var(--light-blue) 90%);
+    }
+
+    .section-dark .section-title p {
+        color: rgba(255, 255, 255, 0.8);
+        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* ===================== POPRAWIONE MODAL STYLES ===================== */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1100;
+        overflow-y: auto;
+        padding: 20px 0;
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: var(--white);
+        margin: 0 auto;
+        padding: 0;
+        width: 90%;
+        max-width: 900px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: modalFadeIn 0.5s;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        color: var(--gray);
+        cursor: pointer;
+        z-index: 10;
+        background: rgba(255,255,255,0.8);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+
+    .close-modal:hover {
+        color: var(--primary);
+        background: var(--white);
+        transform: rotate(90deg);
+    }
+
+    .modal-header {
+        padding: 20px 30px;
+        border-bottom: 1px solid var(--light-gray);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: var(--white);
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        flex-shrink: 0;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+        color: var(--white);
+    }
+
+    .modal-body {
+        padding: 30px;
+        overflow-y: auto;
+        flex-grow: 1;
+    }
+
+    /* NOWY STYL DLA MODALA Z OPŁYWANIEM TEKSTU */
+    .modal-specialist-info {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 30px;
+        align-items: flex-start;
+    }
+
+    .modal-img {
+        flex: 0 0 300px;
+        position: relative;
+    }
+
+    .modal-img img {
+        width: 100%;
+        border-radius: var(--border-radius);
+        border: 10px solid var(--white);
+        box-shadow: var(--shadow);
+        object-fit: cover;
+        height: 400px;
+    }
+
+    .modal-details {
+        flex: 1;
+        min-width: 0; /* Zapobiega przepełnieniu */
+    }
+
+    .modal-details h3 {
+        color: var(--primary);
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+    }
+
+    .modal-details p {
+        margin-bottom: 20px;
+        line-height: 1.6;
+        color: var(--dark);
+    }
+
+    .modal-details h4 {
+        color: var(--secondary);
+        margin: 25px 0 15px;
+        font-size: 1.2rem;
+        border-bottom: 2px solid var(--light-gray);
+        padding-bottom: 8px;
+    }
+
+    .modal-details ul {
+        margin-bottom: 25px;
+        padding-left: 0;
+    }
+
+    .modal-details li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+        position: relative;
+        padding-left: 20px;
+        list-style-type: none;
+    }
+
+    .modal-details li:before {
+        content: "•";
+        color: var(--accent);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* Responsywność modala */
+    @media (max-width: 768px) {
+        .modal-specialist-info {
+            flex-direction: column;
+            gap: 20px;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .modal-img {
+            flex: 0 0 auto;
+            text-align: center;
+            width: 100%;
         }
         
-        html {
-            scroll-behavior: smooth;
+        .modal-img img {
+            max-width: 300px;
+            height: 350px;
         }
         
-        body {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--dark-text);
+        .modal-details {
+            width: 100%;
+        }
+        
+        .modal-content {
+            width: 95%;
+            max-height: 95vh;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .modal-img img {
+            height: 300px;
+        }
+        
+        .modal-body {
+            padding: 15px;
+        }
+        
+        .modal-header {
+            padding: 15px 20px;
+        }
+    }
+    
+    /* ===================== NOWY HEADER ===================== */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+    }
+    
+    .header.scrolled {
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo img {
+        height: 70px;
+        width: auto;
+        transition: var(--transition);
+    }
+    
+    .nav-menu {
+        display: flex;
+        list-style: none;
+    }
+    
+    .nav-menu li {
+        margin-left: 30px;
+        position: relative;
+        list-style-type: none;
+    }
+    
+    .nav-menu a {
+        text-decoration: none;
+        color: var(--primary-dark);
+        font-family: 'Michroma', sans-serif;
+        font-weight: 200;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        transition: var(--transition);
+        padding: 5px 0;
+        position: relative;
+    }
+    
+    /* ZMIANA: Hover na kolor accent zamiast białego */
+    .nav-menu a:hover {
+        color: var(--accent);
+    }
+    
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        /* ZMIANA: Kolor linii na accent */
+        background-color: var(--accent);
+        transition: var(--transition);
+    }
+    
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
+    
+    .dropdown {
+        position: relative;
+    }
+    
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--white);
+        min-width: 200px;
+        box-shadow: var(--shadow);
+        border-radius: var(--border-radius);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        z-index: 100;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .dropdown-menu li {
+        margin: 0;
+        border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .dropdown-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .dropdown-menu a {
+        display: block;
+        padding: 12px 20px;
+        font-weight: 500;
+        color: var(--dark);
+        text-transform: none;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .dropdown-menu a:hover {
+        color: var(--primary);
+        background-color: var(--light);
+    }
+    
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--primary-blue);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    
+    .mobile-menu-btn:hover {
+        color: var(--accent-gold);
+    }
+    
+    /* ===================== NOWA HERO SECTION ===================== */
+    .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        overflow: hidden;
+    }
+    
+    .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(24, 48, 84, 0.7), rgba(24, 48, 84, 0.9));
+        z-index: -1;
+    }
+    
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease forwards 0.5s;
+        position: relative;
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .hero h1 {
+        font-size: 3.8rem;
+        margin-bottom: 0.4rem;
+        color: var(--white);
+        animation: fadeInUp 1s ease forwards 0.8s;
+        opacity: 0;
+        font-family: 'Michroma', sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        color: var(--white);
+        animation: fadeInUp 1s ease forwards 0.8s;
+        opacity: 0;
+        font-family: 'Michroma', sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
+        letter-spacing: 1.3em;
+        position: relative;
+        padding: 0 20px;
+        background: transparent;
+        z-index: 2;
+    }
+    
+    .hero-title {
+        font-size: 3.8rem;
+        position: relative;
+        padding: 0 20px;
+        background: transparent;
+        z-index: 2;
+    }
+    
+    /* DODANE: Linie w hero section podobne do section-title */
+    .hero-content::before,
+    .hero-content::after {
+        content: "";
+        position: absolute;
+        top: 48%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--white);
+        transform: translateY(-50%);
+        animation: lineDraw 2s ease forwards 1.8s;
+        opacity: 0;
+    }
+    
+    .hero-content::before {
+        width: calc(50% - 200px);
+        right: auto;
+        left: 0;
+        background: linear-gradient(to right, 
+            transparent 0%, 
+            var(--white) 30%, 
+            var(--accent-gold) 100%);
+    }
+    
+    .hero-content::after {
+        width: calc(50% - 200px);
+        left: auto;
+        right: 0;
+        background: linear-gradient(to left, 
+            transparent 0%, 
+            var(--white) 30%, 
+            var(--accent-gold) 100%);
+    }
+    
+    @keyframes lineDraw {
+        from {
+            opacity: 0;
+            width: 0;
+        }
+        to {
+            opacity: 1;
+            width: calc(50% - 200px);
+        }
+    }
+    
+    .hero p {
+        font-size: 0.8rem;
+        margin-bottom: 2.5rem;
+        color: var(--white);
+        animation: fadeInUp 1s ease forwards 1s;
+        opacity: 0;
+        font-family: 'Raleway', sans-serif;
+    }
+    
+    .hero .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent-gold);
+        color: var(--primary-blue);
+        text-decoration: none;
+        border-radius: 30px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 1s ease forwards 1.2s;
+        opacity: 0;
+    }
+    
+    .hero .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: var(--transition-slow);
+    }
+    
+    .hero .btn:hover::before {
+        left: 100%;
+    }
+    
+    .hero .btn:hover {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    /* ===================== SERVICES BAR ===================== */
+.services-bar {
+    background-color: rgba(14, 73, 151, 0.5); /* Zmieniony na bardziej subtelny kolor */
+    padding: 8px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-wrapper {
+    display: flex;
+    width: max-content;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    padding-bottom: 0px;
+    animation: scrollInfinitely 40s linear infinite;
+}
+
+.services-container:hover {
+    animation-play-state: paused;
+}
+
+.services-container::after {
+    content: '';
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.services-container .service-item:nth-child(n) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Dodane dla pionowego wyśrodkowania */
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 250px;
+    padding: 0 0px;
+    height: 120%; /* Dodane dla pełnej wysokości */
+}
+
+@keyframes scrollInfinitely {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-150px * 5 - 20px * 5));
+    }
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Dodane dla pionowego wyśrodkowania */
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 50px;
+    padding: 0 5px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-slow);
+    height: 100%; /* Dodane dla pełnej wysokości */
+}
+
+.service-item.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.service-icon {
+    height: 35px;
+    margin-bottom: 8px; /* Zwiększony margines dla lepszego odstępu */
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-item:hover .service-icon {
+    transform: translateY(-5px);
+}
+
+.service-text {
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Pełna szerokość dla poprawnego wyśrodkowania */
+}
+
+/* Services Section */
+.services {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 kolumn */
+    gap: 10px;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    padding: 20px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
+}
+
+.service-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover:before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-card .service-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(26, 75, 140, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    flex-shrink: 0;
+}
+
+.service-card .service-icon i {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.service-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-top: 0;
+    text-align: center;
+    text-wrap: inherit;
+    hyphens: auto;
+    line-height: 1.3;
+    width: 110%;
+}
+
+.service-card p {
+    color: var(--gray);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.4;
+    width: 120%;
+    flex-grow: 1; /* Pozwala tekstowi zająć dostępną przestrzeń */
+}
+
+/* Nowy styl dla wszystkich ikon w Services Section */
+.service-icon-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(90%) saturate(2000%) hue-rotate(200deg) brightness(40%) contrast(90%);
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon-img {
+    transform: translateY(-5px);
+}
+
+/* ===================== FOR MEN SECTION - ZMODERNIZOWANA ===================== */
+.for-men {
+    position: relative;
+    overflow: hidden;
+    color: white;
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(10, 53, 94, 0.9) 0%, rgba(0, 163, 224, 0.8) 100%);
+}
+
+.for-men-bg-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.for-men-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.for-men-bg-slide.active {
+    opacity: 0.2; /* Bardziej subtelna przezroczystość */
+}
+
+.for-men-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+}
+
+.for-men-slider-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.for-men-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.for-men-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+}
+
+.for-men-slide.active {
+    opacity: 1;
+}
+
+.for-men-slide-content {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.for-men-slide-content h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.for-men-slide-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: var(--dark);
+}
+
+.for-men-indicators {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 4;
+}
+
+.for-men-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.for-men-indicator.active {
+    background: white;
+    transform: scale(1.3);
+    border-color: var(--accent);
+}
+
+/* ===================== NOWA ABOUT SECTION ===================== */
+.about {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.about-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.about-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(8,47,97,0.9) 0%, rgba(0,163,224,0.8) 100%);
+    color: rgb(0, 0, 0);
+}
+
+.about-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-slide.next {
+    transform: translateX(100%);
+}
+
+.about-slide.prev {
+    transform: translateX(-100%);
+}
+
+.slide-content {
+    max-width: 800px;
+    z-index: 2;
+}
+
+.slide-content h3 {
+    letter-spacing: 5px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.slide-content p {
+    color: white;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.slider-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+}
+
+.slider-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-indicator.active {
+    background: white;
+    transform: scale(1.3);
+}
+/* ===================== POPRAWIONA SEKCJA SPECJALISTÓW ===================== */
+.specialists {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+}
+
+.specialists-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* ZMIANA: Poprawione odstępy w tytule "Nasz zespół" */
+.specialists .section-title h2 {
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.specialists .section-title p {
+    margin-top: 15px;
+}
+
+/* ===================== POPRAWIONA SEKCJA SPECJALISTÓW ===================== */
+.specialists {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+}
+
+.specialists-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* ZMIANA: Poprawione odstępy w tytule "Nasz zespół" */
+.specialists .section-title h2 {
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.specialists .section-title p {
+    margin-top: 15px;
+}
+
+/* NOWY STYL DLA SPECJALISTÓW - ZOPTYMALIZOWANY */
+.specialists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    align-items: stretch;
+}
+
+.specialist-card-container {
+    height: 480px; /* Zmniejszona wysokość - przycisk zaraz pod specjalizacją */
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.specialist-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    cursor: pointer;
+    overflow: hidden;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.specialist-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Nowy styl dla obrazków specjalistów */
+.specialist-img {
+    height: 320px; /* Przywrócona oryginalna wysokość obrazka */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.specialist-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(8,47,97,0.1) 0%, rgba(0,163,224,0.05) 100%);
+    z-index: 1;
+}
+
+.specialist-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s ease;
+    filter: brightness(1.05) contrast(1.1);
+}
+
+.specialist-card:hover .specialist-img img {
+    transform: scale(1.08);
+}
+
+.specialist-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 3;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.specialist-content {
+    padding: 25px 20px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+}
+
+.specialist-content h3 {
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 1.3rem;
+    line-height: 1.3;
+}
+
+.specialist-specialty {
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 20px; /* Większy margines pod specjalizacją */
+    font-size: 1rem;
+    line-height: 1.4;
+    flex-grow: 0; /* Nie rozszerza się */
+}
+
+/* PRZYCISK OD RAZU POD SPECJALIZACJĄ */
+.specialist-button-container {
+    margin-top: 0; /* Brak automatycznego marginesu */
+    padding-top: 0;
+    width: 100%;
+    text-align: center;
+    flex-grow: 0; /* Nie rozszerza się */
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .specialists-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .specialists-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .specialist-card-container {
+        max-width: 100%;
+        height: 460px;
+    }
+    
+    .specialist-img {
+        height: 280px;
+    }
+    
+    .specialist-content {
+        padding: 20px 15px 15px;
+    }
+    
+    .specialist-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .specialist-specialty {
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .specialist-card-container {
+        height: 440px;
+    }
+    
+    .specialist-img {
+        height: 260px;
+    }
+    
+    .specialist-content {
+        padding: 15px 12px 12px;
+    }
+    
+    .specialist-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .specialist-specialty {
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+    }
+}
+/* Responsive */
+@media (max-width: 1200px) {
+    .specialists-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .specialists-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .specialist-card-container {
+        max-width: 100%;
+        height: 450px;
+    }
+    
+    .specialist-img {
+        height: 280px;
+    }
+    
+    .specialist-button-container {
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .specialist-card-container {
+        height: 400px;
+    }
+    
+    .specialist-img {
+        height: 240px;
+    }
+    
+    .specialist-content {
+        padding: 20px 15px;
+    }
+    
+    .specialist-button-container {
+        padding-top: 10px;
+    }
+}
+    
+    /* Contact Section */
+    .contact {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    }
+    
+    .contact-content {
+        display: flex;
+        gap: 50px;
+    }
+    
+    .contact-info {
+        flex: 1;
+    }
+    
+    .contact-form {
+        flex: 1;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(26, 75, 140, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    .contact-icon i {
+        font-size: 1.2rem;
+        color: var(--primary);
+    }
+    
+    .contact-details h4 {
+        margin-bottom: 5px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--light-gray);
+        border-radius: var(--border-radius);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
+    }
+    
+    textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+    }
+    
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+        color: var(--white);
+        padding: 80px 0 0;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-col h4:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--accent);
+    }
+    
+    .footer-col p {
+        margin-bottom: 20px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+        color: var(--white);
+        padding-left: 5px;
+    }
+    
+    .footer-contact li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .footer-contact i {
+        margin-right: 10px;
+        color: var(--accent);
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+        background-color: var(--accent);
+        transform: translateY(-3px);
+    }
+    
+    /* Map Section in Footer */
+    .footer-map {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+        padding: 0;
+    }
+    
+    .map-container {
+        width: 100%;
+        border-radius: 0;
+        overflow: hidden;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+    }
+    
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .services-grid {
+            grid-template-columns: repeat(3, 1fr); /* 3 kolumny na średnich ekranach */
+        }
+    }
+    
+    @media (max-width: 992px) {
+        h1 {
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+        }
+        
+        .contact-content {
+            flex-direction: column;
+        }
+        
+        .specialists-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .services-container {
+            justify-content: flex-start; /* Zmieniono na flex-start */
+        }
+        
+        .service-item {
+            min-width: 140px;
+            flex: 0 0 auto;
+        }
+        
+        .for-men-content,
+        .about-content {
+            flex-direction: column;
+        }
+        
+        .for-men-image,
+        .about-image {
+            order: -1;
+        }
+        
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 kolumny na tabletach */
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
             background-color: var(--white);
-            overflow-x: hidden;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            transition: var(--transition);
+            z-index: 999;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Michroma', 'Montserrat', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            position: relative;
-            list-style: none;
+        .nav-menu.active {
+            left: 0;
+        }
+        
+        .nav-menu li {
+            margin: 0 0 20px 0;
+        }
+        
+        .dropdown-menu {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            background-color: transparent;
+            display: none;
+        }
+        
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+        
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+        }
+        
+        .specialists-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .services-container {
+            justify-content: flex-start;
+        }
+        
+        .service-item {
+            width: auto;
+            max-width: none;
+        }
+        
+        .services-grid {
+            grid-template-columns: 1fr; /* 1 kolumna na telefonach */
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .section {
+            padding: 60px 0;
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.2rem;
         }
         
         h2 {
             font-size: 1.8rem;
         }
         
-        h2:before {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.6rem;
-        }
-        
-        h3:before {
-            content: "";
-            color: var(--accent);
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        h4 {
-            font-size: 1.3rem;
-        }
-        
-        h5 {
-            font-size: 1.2rem;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: var(--border-radius);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #0088b5;
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #00a895;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-        
-        .section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        
-        .section-title h2:before {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        .section-title h2 small {
-            font-size: 2.0rem;
-            font-weight: 100;
-        }
-        
-        /* ===================== NOWY HEADER ===================== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header.scrolled {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 70px;
-            width: auto;
-            transition: var(--transition);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 30px;
-            position: relative;
-            list-style-type: none;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-family: 'Michroma', sans-serif;
-            font-weight: 200;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            transition: var(--transition);
-            padding: 5px 0;
-            position: relative;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--accent-gold);
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--accent-gold);
-            transition: var(--transition);
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--white);
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            border-radius: var(--border-radius);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 100;
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-menu li {
-            margin: 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .dropdown-menu li:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            font-weight: 500;
-            color: var(--dark);
-            text-transform: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .dropdown-menu a:hover {
-            color: var(--primary);
-            background-color: var(--light);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu-btn:hover {
-            color: var(--accent-gold);
-        }
-        
-        /* ===================== NOWA HERO SECTION ===================== */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            overflow: hidden;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(24, 48, 84, 0.7), rgba(24, 48, 84, 0.9));
-            z-index: -1;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.5s;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         .hero h1 {
-            font-size: 3.8rem;
-            margin-bottom: 0.4rem;
-            color: var(--white);
-            animation: fadeInUp 1s ease forwards 0.8s;
-            opacity: 0;
-            font-family: 'Michroma', sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .hero h1 span {
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--white);
-            animation: fadeInUp 1s ease forwards 0.8s;
-            opacity: 0;
-            font-family: 'Michroma', sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-            letter-spacing: 1.3em;
+            font-size: 2rem;
         }
         
-        .hero p {
-            font-size: 0.8rem;
-            margin-bottom: 2.5rem;
-            color: var(--white);
-            animation: fadeInUp 1s ease forwards 1s;
-            opacity: 0;
-            font-family: 'Raleway', sans-serif;
-        }
-        
-        .hero .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--accent-gold);
-            color: var(--primary-blue);
-            text-decoration: none;
-            border-radius: 30px;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 1s ease forwards 1.2s;
-            opacity: 0;
-        }
-        
-        .hero .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: var(--transition-slow);
-        }
-        
-        .hero .btn:hover::before {
-            left: 100%;
-        }
-        
-        .hero .btn:hover {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        /* ===================== SERVICES BAR ===================== */
-        .services-bar {
-            background-color: rgba(14, 73, 151, 0.705);
-            padding: 8px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services-wrapper {
-            display: flex;
-            width: max-content;
-        }
-
         .services-container {
-            display: flex;
-            justify-content: space-evenly;
-            flex-wrap: nowrap;
-            padding-bottom: 0px;
-            animation: scrollInfinitely 40s linear infinite;
+            padding: 0 10px;
         }
-
-        .services-container:hover {
-            animation-play-state: paused;
-        }
-
-        .services-container::after {
-            content: '';
-            display: flex;
-            flex-wrap: nowrap;
-        }
-
-        .services-container .service-item:nth-child(n) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            flex: 0 0 auto;
-            min-width: 250px;
-            padding: 0 0px;
-            height: 120%;
-        }
-
-        @keyframes scrollInfinitely {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-150px * 5 - 20px * 5));
-            }
-        }
-
+        
         .service-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            flex: 0 0 auto;
-            min-width: 50px;
-            padding: 0 5px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition-slow);
-            height: 100%;
+            min-width: 120px;
+            padding: 0 8px;
         }
-
-        .service-item.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .service-icon {
-            height: 35px;
-            margin-bottom: 8px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-item:hover .service-icon {
-            transform: translateY(-5px);
-        }
-
+        
         .service-text {
-            color: var(--white);
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 500;
-            line-height: 1.1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
+            font-size: 0.7rem;
         }
+    }
+</style>
 
-        /* Services Section */
-        .services {
-            background-color: var(--light);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
-
-        .service-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            transition: var(--transition);
-            text-align: center;
-            padding: 20px 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 300px;
-        }
-
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 120%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover:before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-card .service-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(26, 75, 140, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            flex-shrink: 0;
-        }
-
-        .service-card .service-icon i {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .service-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            margin-top: 0;
-            text-align: center;
-            text-wrap: inherit;
-            hyphens: auto;
-            line-height: 1.3;
-            width: 110%;
-            color: var(--dark-text);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            text-align: center;
-            line-height: 1.4;
-            width: 120%;
-            flex-grow: 1;
-        }
-
-        .custom-icon {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            filter: brightness(0) saturate(100%) invert(27%) sepia(90%) saturate(2000%) hue-rotate(200deg) brightness(40%) contrast(90%);
-            transition: var(--transition);
-        }
-
-        .service-card:hover .custom-icon {
-            transform: translateY(-5px);
-        }
-
-        .custom-icon {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        .custom-icon.colored {
-            filter: none;
-        }
-
-        /* ===================== SECTION SPACING ADJUSTMENTS ===================== */
-        
-        .section {
-            padding: 60px 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            margin-bottom: 40px;
-        }
-
-        /* ===================== NOWA ABOUT SECTION ===================== */
-        .about {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-slider-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .about-slider {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .about-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(8,47,97,0.9) 0%, rgba(0,163,224,0.8) 100%);
-            color: var(--white);
-        }
-
-        .about-slide.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-slide.next {
-            transform: translateX(100%);
-        }
-
-        .about-slide.prev {
-            transform: translateX(-100%);
-        }
-
-        .slide-content {
-            max-width: 800px;
-            z-index: 2;
-        }
-
-        .slide-content h3 {
-            letter-spacing: 5px;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .slide-content p {
-            color: var(--white);
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            opacity: 0.3;
-        }
-
-        .slider-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 3;
-        }
-
-        .slider-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-indicator.active {
-            background: var(--white);
-            transform: scale(1.3);
-        }
-
-        /* ===================== POPRAWIONA FOR-MEN SECTION ===================== */
-        .for-men {
-            position: relative;
-            overflow: hidden;
-            color: var(--white);
-        }
-
-        .for-men-bg-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .for-men-bg-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-        }
-
-        .for-men-bg-slide.active {
-            opacity: 1;
-        }
-
-        .for-men-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 53, 94, 0.7) 0%, rgba(0, 163, 224, 0.6) 100%);
-            z-index: 2;
-        }
-
-        .for-men-content {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-        }
-
-        .for-men-slider-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .for-men-slider {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .for-men-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
-            text-align: center;
-        }
-
-        .for-men-slide.active {
-            opacity: 1;
-        }
-
-        .for-men-slide-content {
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 15px;
-        }
-
-        .for-men-slide-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .for-men-slide-content p {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: var(--dark-text);
-        }
-
-        .for-men-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 4;
-        }
-
-        .for-men-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .for-men-indicator.active {
-            background: var(--white);
-            transform: scale(1.3);
-        }
-
-        .for-men .section-title h2 {
-            color: var(--white);
-        }
-
-        .for-men .section-title p {
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* Specialists Section */
-        .specialists {
-            background-color: var(--light);
-        }
-
-        .specialists-filter {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            background-color: var(--white);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        /* Nowy styl dla specjalistów bez karuzeli */
-        .specialists-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            justify-items: center;
-            align-items: start;
-        }
-
-        .specialist-card-container {
-            perspective: 1000px;
-            height: 500px;
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
-            justify-items: center;
-        }
-
-        .specialist-card {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            justify-items: center;
-        }
-
-        .specialist-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .specialist-card:not(.flipped):hover {
-            transform: translateY(-5px);
-        }
-
-        .specialist-front,
-        .specialist-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .specialist-front {
-            background-color: var(--white);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .specialist-back {
-            background-color: var(--white);
-            transform: rotateY(180deg);
-            padding: 30px 25px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .specialist-img {
-            height: 320px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .specialist-img::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .specialist-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            transition: transform 0.6s ease;
-        }
-
-        .specialist-card:not(.flipped):hover .specialist-img img {
-            transform: scale(1.05);
-        }
-
-        .specialist-img-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(
-                to top, 
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(255, 255, 255, 0.8) 30%,
-                rgba(255, 255, 255, 0.4) 70%,
-                transparent 100%
-            );
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-
-        .specialist-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-
-        .specialist-content {
-            padding: 25px 20px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .specialist-content h3 {
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-size: 1.3rem;
-            line-height: 1.3;
-            list-style: none;
-        }
-
-        .specialist-specialty {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        .specialist-description {
-            color: var(--gray);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .specialist-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .specialist-features span {
-            display: flex;
-            align-items: center;
-            background-color: rgba(26, 75, 140, 0.1);
-            color: var(--primary);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .specialist-features i {
-            margin-right: 5px;
-            font-size: 0.8rem;
-        }
-
-        /* Back side styling */
-        .specialist-back h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            text-align: center;
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 8px;
-            list-style: none;
-        }
-
-        .specialist-back h4 {
-            color: var(--secondary);
-            margin: 20px 0 12px;
-            font-size: 1.1rem;
-        }
-
-        .specialist-back ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-
-        .specialist-back li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 15px;
-            line-height: 1.5;
-        }
-
-        .specialist-back li:before {
-            content: "•";
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .specialist-card::after {
-            content: "Kliknij, aby zobaczyć więcej";
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--white);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .specialist-card:not(.flipped):hover::after {
-            opacity: 1;
-        }
-
-        /* Reviews Section */
-        .reviews {
-            background-color: var(--light);
-        }
-        
-        .reviews-slider {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        .reviews-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .review-card {
-            flex: 0 0 100%;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            margin: 0 15px;
-        }
-        
-        .review-stars {
-            color: #ffc107;
-            margin-bottom: 15px;
-        }
-        
-        .review-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-        
-        .review-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .review-author-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-        
-        .review-author-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .review-author-info h4 {
-            margin-bottom: 5px;
-        }
-        
-        .review-author-info p {
-            color: var(--gray);
-            margin: 0;
-        }
-        
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--light-gray);
-            margin: 0 5px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .slider-dot.active {
-            background-color: var(--primary);
-        }
-        
-        /* Contact Section */
-        .contact-content {
-            display: flex;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(26, 75, 140, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-        }
-        
-        .contact-icon i {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        .contact-details h4 {
-            margin-bottom: 5px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: var(--border-radius);
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 80px 0 0;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h4 {
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-            color: var(--white);
-        }
-        
-        .footer-col h4:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        
-        .footer-col p {
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-        
-        .footer-contact li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .footer-contact i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        /* Map Section in Footer */
-        .footer-map {
-            background-color: var(--primary-dark);
-            padding: 0;
-        }
-        
-        .map-container {
-            width: 100%;
-            border-radius: 0;
-            overflow: hidden;
-        }
-        
-        .map-container iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 0;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .specialists-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            }
-        }
-        
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
-            
-            .specialists-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .services-container {
-                justify-content: flex-start;
-            }
-            
-            .service-item {
-                min-width: 140px;
-                flex: 0 0 auto;
-            }
-            
-            .about-slider-container,
-            .for-men-slider-container {
-                height: 400px;
-            }
-            
-            .slide-content h3,
-            .for-men-slide-content h3 {
-                font-size: 2rem;
-            }
-            
-            .slide-content p,
-            .for-men-slide-content p {
-                font-size: 1.1rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: var(--transition);
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin: 0 0 20px 0;
-            }
-            
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background-color: transparent;
-                display: none;
-            }
-            
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .specialists-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-container {
-                justify-content: flex-start;
-            }
-            
-            .service-item {
-                width: auto;
-                max-width: none;
-            }
-            
-            .about-slider-container,
-            .for-men-slider-container {
-                height: 350px;
-            }
-            
-            .slide-content,
-            .for-men-slide-content {
-                padding: 40px 30px;
-            }
-            
-            .slide-content h3,
-            .for-men-slide-content h3 {
-                font-size: 1.8rem;
-            }
-            
-            .slide-content p,
-            .for-men-slide-content p {
-                font-size: 1rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .section {
-                padding: 60px 0;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .services-container {
-                padding: 0 10px;
-            }
-            
-            .service-item {
-                min-width: 120px;
-                padding: 0 8px;
-            }
-            
-            .service-text {
-                font-size: 0.7rem;
-            }
-
-            .about-slider-container,
-            .for-men-slider-container {
-                height: 300px;
-            }
-            
-            .slide-content,
-            .for-men-slide-content {
-                padding: 30px 20px;
-            }
-            
-            .slide-content h3,
-            .for-men-slide-content h3 {
-                font-size: 1.5rem;
-            }
-            
-            .slide-content p,
-            .for-men-slide-content p {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Nowy Header -->
@@ -1771,7 +1910,10 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
-            <h1><span>Centrum medyczne</span> Garbary Clinic</h1>
+            <h1>
+                <span class="hero-subtitle">Centrum medyczne</span>
+                <span class="hero-title">Garbary Clinic</span>
+            </h1>
             <p>Specjalistyczna opieka w najwyższym standardzie</p>
             <a href="#contact" class="btn">Umów wizytę</a>
         </div>
@@ -1848,7 +1990,7 @@
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/gabinety_specjalistyczne.png" alt="Zespół" class="service-icon-img">
                     </div>
                     <h3>Zespół</h3>
                     <p>Konsultacje z doświadczonymi lekarzami różnych specjalizacji w komfortowych warunkach.</p>
@@ -1857,7 +1999,7 @@
                 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/zabiegi_chirurgiczne.png" alt="Zabiegi chirurgiczne" class="custom-icon">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/zabiegi_chirurgiczne.png" alt="Zabiegi chirurgiczne" class="service-icon-img">
                     </div>
                     <h3>Zabiegi</h3>
                     <p>Nowoczesne zabiegi medyczne wykonywane przy użyciu najnowocześniejszego sprzętu.</p>
@@ -1866,16 +2008,17 @@
                 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-microscope"></i>
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/badanie_nasienia_m.png" alt="Bariatria" class="service-icon-img">
+
                     </div>
-                    <h3>Diagnostyka i seminologia</h3>
+                    <h3>Diagnostyka  seminologia</h3>
                     <p>Kompleksowa diagnostyka laboratoryjna i obrazowa dla precyzyjnej diagnozy.</p>
                     <a href="diagnostyka.html" class="btn btn-outline">Dowiedz się więcej</a>
                 </div>
                 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-heartbeat"></i>
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/10/Urofizjoterapia-183x300.png" alt="Urorehabilitacja" class="service-icon-img">
                     </div>
                     <h3>Urorehabilitacja</h3>
                     <p>Specjalistyczna rehabilitacja urologiczna pod okiem doświadczonych fizjoterapeutów.</p>
@@ -1884,7 +2027,7 @@
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-weight-scale"></i>
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/10/Dietetyka-286x300.png" alt="Diagnostyka" class="service-icon-img">
                     </div>
                     <h3>Bariatria</h3>
                     <p>Kompleksowe leczenie choroby otyłości z wykorzystaniem najnowszych metod terapeutycznych.</p>
@@ -1916,7 +2059,7 @@
                     
                     <!-- Slide 2 -->
                     <div class="about-slide">
-                        <div class="slide-bg" style="background-image: url('zdj/_MG_2721.webp')"></div>
+                        <div class="slide-bg" style="background-image: url('zdj/_MG_2457.webp')"></div>
                         <div class="slide-content">
                             <h3>Doświadczony Zespół Specjalistów</h3>
                             <p>W naszej klinice pracują wybitni specjaliści z różnych dziedzin medycyny. Łączymy wiedzę, doświadczenie i pasję, aby zapewnić naszym pacjentom najlepszą możliwą opiekę medyczną.</p>
@@ -1926,7 +2069,7 @@
                     
                     <!-- Slide 3 -->
                     <div class="about-slide">
-                        <div class="slide-bg" style="background-image: url('zdj/blur.webp')"></div>
+                        <div class="slide-bg" style="background-image: url('zdj/_MG_2721.webp')"></div>
                         <div class="slide-content">
                             <h3>Zaawansowane Technologie</h3>
                             <p>Dysponujemy najnowocześniejszym sprzętem medycznym, który pozwala na precyzyjną diagnostykę i skuteczne leczenie. Inwestujemy w technologie, które podnoszą standardy opieki medycznej.</p>
@@ -1955,24 +2098,21 @@
         </div>
     </section>
 
-    <!-- Poprawiona For Men Section - tło zmienia się w section, napisy w divie -->
-    <section class="section for-men" id="formen">
+    <!-- ZMODERNIZOWANA For Men Section - SUBTELNA I ELEGANCKA -->
+    <section class="section for-men section-dark" id="formen">
         <!-- Tło zmienia się w całej sekcji -->
         <div class="for-men-bg-slider">
-            <div class="for-men-bg-slide" style="background-image: url('zdj/_MG_3642_1.webp')"></div>
+            <div class="for-men-bg-slide" style="background-image: url('zdj/home2.webp')"></div>
             <div class="for-men-bg-slide active" style="background-image: url('zdj/_MG_3118_edit.webp')"></div>
             <div class="for-men-bg-slide" style="background-image: url('zdj/_MG_2388.webp')"></div>
             <div class="for-men-bg-slide" style="background-image: url('zdj/blur.webp')"></div>
         </div>
         
-        <!-- Overlay dla lepszej czytelności -->
-        <div class="for-men-overlay"></div>
-        
         <!-- Zawartość z napisami -->
         <div class="container for-men-content">
             <div class="section-title">
                 <h2>Dla Mężczyzn</h2>
-                <p>Męska siła rodzi się w trosce o zdrowie. Specjalistyczna opieka ukierunkowana na potrzeby mężczyzn.</p>
+                <p>Męska siła rodzi się w trosce o zdrowie.</p>
             </div>
             
             <div class="for-men-slider-container">
@@ -2045,40 +2185,273 @@
             <div class="specialists-grid">
                 <!-- Lekarze -->
                 <div class="specialist-card-container fade-in" data-category="lekarz">
-                    <div class="specialist-card">
-                        <div class="specialist-front">
-                            <div class="specialist-img">
-                                <img src="zdj/dr n. med.Daria Ługowska.jpg" alt="dr n. med. Daria Ługowska">
-                                <div class="specialist-badge">Diabetolog</div>
-                            </div>
-                            <div class="specialist-content">
-                                <h3>dr n. med. Daria Ługowska</h3>
-                                <p class="specialist-specialty">Specjalistka chorób wewnętrznych i diabetologii</p>
-                            </div>
+                    <div class="specialist-card" data-id="daria-lugowska">
+                        <div class="specialist-img">
+                            <img src="zdj/dr n. med.Daria Ługowska.jpg" alt="dr n. med. Daria Ługowska">
+                            <div class="specialist-badge">Diabetolog</div>
                         </div>
-                        <div class="specialist-back">
+                        <div class="specialist-content">
                             <h3>dr n. med. Daria Ługowska</h3>
-                            <p>Specjalistka chorób wewnętrznych i diabetologii. Zajmuje się diagnostyką, leczeniem i monitorowaniem cukrzycy oraz chorób metabolicznych. Pracuje w Klinica Chorób Wewnętrznych i Diabetologii 10. Wojskowego Szpitala Klinicznego w Bydgoszczy oraz w Poradni Diabetologicznej dla Ciężarnych.</p>
-                            <h4>Specjalizacje</h4>
-                            <ul>
-                                <li>Diagnostyka i leczenie cukrzycy (również cukrzycy ciężarnych)</li>
-                                <li>Leczenie choroby otyłościowej, zaburzeń lipidowych i metabolicznych</li>
-                                <li>Terapia nadciśnienia tętniczego i hipercholesterolemii</li>
-                                <li>Profilaktyka powikłań cukrzycy</li>
-                            </ul>
+                            <p class="specialist-specialty">Specjalistka chorób wewnętrznych i diabetologii</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Pozostałe karty specjalistów zostały bez zmian -->
-                <!-- ... -->
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="przemyslaw-wyzgowski">
+                        <div class="specialist-img">
+                            <img src="zdj/PrzemysławWyżgowski.jpg" alt="dr n. med. Przemysław Wyżgowski">
+                            <div class="specialist-badge">Chirurg</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>dr n. med. Przemysław Wyżgowski</h3>
+                            <p class="specialist-specialty">Bariatra / Specjalista chirurgii ogólnej i onkologicznej</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="tomasz-purwin">
+                        <div class="specialist-img">
+                            <img src="zdj/P.Tomasz Purwin.webp" alt="dr n. med. Tomasz Purwin">
+                            <div class="specialist-badge">Androlog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>dr n. med. Tomasz Purwin</h3>
+                            <p class="specialist-specialty">Androlog / Urolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="patryk-niekraszewicz">
+                        <div class="specialist-img">
+                            <img src="zdj/patryk niekraszewicz.jpg" alt="lek. Patryk Niekraszewicz">
+                            <div class="specialist-badge">Urolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Patryk Niekraszewicz</h3>
+                            <p class="specialist-specialty">Urolog (w trakcie specjalizacji)</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="bartosz-sankowski">
+                        <div class="specialist-img">
+                            <img src="zdj/lek.BartoszSankowski.jpg" alt="lek. Bartosz Sankowski">
+                            <div class="specialist-badge">Ginekolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Bartosz Sankowski</h3>
+                            <p class="specialist-specialty">Ginekolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Psycholodzy -->
+                <div class="specialist-card-container fade-in" data-category="psycholog">
+                    <div class="specialist-card" data-id="anita-szyszkowicz">
+                        <div class="specialist-img">
+                            <img src="zdj/Anita_.webp" alt="mgr Anita Szyszkowicz">
+                            <div class="specialist-badge">Psycholog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>mgr Anita Szyszkowicz</h3>
+                            <p class="specialist-specialty">Psycholog / Seksuolog / Psychotraumatolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="psycholog">
+                    <div class="specialist-card" data-id="adam-kaminski">
+                        <div class="specialist-img">
+                            <img src="zdj/AdamKamiński.png" alt="mgr Adam Kamiński">
+                            <div class="specialist-badge">Psycholog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>mgr Adam Kamiński</h3>
+                            <p class="specialist-specialty">Psycholog / Terapeuta EMDR / Trener</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fizjoterapeuci -->
+                <div class="specialist-card-container fade-in" data-category="fizjoterapeuta">
+                    <div class="specialist-card" data-id="agnieszka-skopowska">
+                        <div class="specialist-img">
+                            <img src="zdj/DraAgnieszkaSkopkowska.jpg" alt="dr n. o zdr. Agnieszka Skopowska">
+                            <div class="specialist-badge">Fizjoterapeuta</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>dr n. o zdr. Agnieszka Skopowska</h3>
+                            <p class="specialist-specialty">Urofizjoterapeutka</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pielęgniarki -->
+                <div class="specialist-card-container fade-in" data-category="pielęgniarka">
+                    <div class="specialist-card" data-id="laura-ptaszynska">
+                        <div class="specialist-img">
+                            <img src="zdj/Laura.webp" alt="Laura Ptaszyńska">
+                            <div class="specialist-badge">Pielęgniarka</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>Laura Ptaszyńska</h3>
+                            <p class="specialist-specialty">Lic. Pielęgniarstwa</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Diagności -->
+                <div class="specialist-card-container fade-in" data-category="diagnosta">
+                    <div class="specialist-card" data-id="olaf-wojtowicz">
+                        <div class="specialist-img">
+                            <img src="zdj/OlafWojtowicz.jpg" alt="lek. Olaf Wojtowicz">
+                            <div class="specialist-badge">Radiolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Olaf Wojtowicz</h3>
+                            <p class="specialist-specialty">Radiolog (w trakcie specjalizacji)</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dietetycy -->
+                <div class="specialist-card-container fade-in" data-category="dietetyk">
+                    <div class="specialist-card" data-id="hanna-sikorska">
+                        <div class="specialist-img">
+                            <img src="zdj/mgr Hanna Sikorska.png" alt="mgr Hanna Sikorska">
+                            <div class="specialist-badge">Dietetyk</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>mgr Hanna Sikorska</h3>
+                            <p class="specialist-specialty">Dietetyk</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dodatkowi lekarze -->
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="maciej-tarczynski">
+                        <div class="specialist-img">
+                            <img src="zdj/Maciej_tarczynski.jpg" alt="lek. Maciej Tarczyński">
+                            <div class="specialist-badge">Chirurg</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Maciej Tarczyński</h3>
+                            <p class="specialist-specialty">Chirurg Ogólny</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="katarzyna-babiarz">
+                        <div class="specialist-img">
+                            <img src="zdj/P.Kasia.webp" alt="lek. Katarzyna Babiarz">
+                            <div class="specialist-badge">Dermatolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Katarzyna Babiarz</h3>
+                            <p class="specialist-specialty">Dermatolog / Wenerolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="katarzyna-plotta">
+                        <div class="specialist-img">
+                            <img src="zdj/kasia.jpg" alt="lek. Katarzyna Plotta-Jażdzewska">
+                            <div class="specialist-badge">Endokrynolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Katarzyna Plotta-Jażdzewska</h3>
+                            <p class="specialist-specialty">Endokrynolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="pawel-gordon">
+                        <div class="specialist-img">
+                            <img src="zdj/gordon.jpg" alt="lek. Paweł Gordon">
+                            <div class="specialist-badge">Kardiolog</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Paweł Gordon</h3>
+                            <p class="specialist-specialty">Kardiolog</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialist-card-container fade-in" data-category="lekarz">
+                    <div class="specialist-card" data-id="krzysztof-karpinski">
+                        <div class="specialist-img">
+                            <img src="zdj/KrzysztofKarpiński.jpg" alt="lek. Krzysztof Karpinski">
+                            <div class="specialist-badge">Chirurg</div>
+                        </div>
+                        <div class="specialist-content">
+                            <h3>lek. Krzysztof Karpinski</h3>
+                            <p class="specialist-specialty">Chirurg Ogólny, Bariatra</p>
+                            <div class="specialist-button-container">
+                                <button class="btn btn-outline">Dowiedz się więcej</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section class="section contact" id="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Kontakt</h2>
@@ -2253,8 +2626,518 @@
         </div>
     </footer>
 
+    <!-- Modal -->
+    <div id="specialist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Specjalista</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Zawartość modal będzie wstawiana dynamicznie -->
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
+        // Specialist data
+        const specialistsData = {
+    "daria-lugowska": {
+        name: "dr n. med. Daria Ługowska",
+        specialty: "Specjalistka chorób wewnętrznych i diabetologii",
+        image: "zdj/dr n. med.Daria Ługowska.jpg",
+        description: "Jestem specjalistką chorób wewnętrznych i diabetologii. Ukończyłam Akademię Medyczną im. Karola Marcinkowskiego w Poznaniu, a doświadczenie zdobywałam w Klinice Chorób Wewnętrznych i Diabetologii 10. Wojskowego Szpitala Klinicznego w Bydgoszczy oraz w Poradni Diabetologicznej dla Ciężarnych. Od lat zajmuję się diagnostyką, leczeniem i monitorowaniem cukrzycy oraz chorób metabolicznych. W pracy stawiam na partnerską współpracę z pacjentem, edukację i wspólne wyznaczanie celów zdrowotnych.",
+        experience: [
+            "Specjalistka chorób wewnętrznych i diabetologii",
+            "Doktor nauk medycznych – praca doktorska pt. „Ocena stężenia wybranych adipocytokin u chorych z cukrzycą typu 2 i przewlekłym zespołem wieńcowym”",
+            "Wieloletnie doświadczenie w poradniach diabetologicznych i leczeniu cukrzycy ciężarnych",
+            "Członkini Polskiego Towarzystwa Diabetologicznego oraz Polskiego Towarzystwa Leczenia Otyłości",
+            "Stały udział w szkoleniach i konferencji z zakresu diabetologii i leczenia otyłości"
+        ],
+        services: [
+            "Diagnostyka i leczenie cukrzycy (również cukrzycy ciężarnych)",
+            "Leczenie choroby otyłościowej, zaburzeń lipidowych i metabolicznych",
+            "Terapia nadciśnienia tętniczego i hipercholesterolemii",
+            "Profilaktyka powikłań cukrzycy (choroby serca, nerek, wzroku, stopy cukrzycowej)"
+        ],
+        preparation: [
+            "Wyniki badań: morfologia, glukoza, lipidogram, hemoglobina glikowana, TSH, próby wątrobowe, kreatynina, witamina D, PSA (mężczyźni)",
+            "Dokumentacja medyczna (np. wypisy, konsultacje specjalistyczne)",
+            "Dzienniczek samokontroli glikemii / aplikacja CGM / pomiary ciśnienia",
+            "Lista aktualnie przyjmowanych leków (z dawkami)"
+        ]
+    },
+    "przemyslaw-wyzgowski": {
+        name: "dr n. med. Przemysław Wyżgowski",
+        specialty: "Bariatra / Specjalista chirurgii ogólnej i onkologicznej",
+        image: "zdj/PrzemysławWyżgowski.jpg",
+        description: "Specjalizuję się w chirurgii ogólnej, bariatrycznej i metabolicznej oraz onkologicznej. Na co dzień pracuję w Oddziale Chirurgii Ogólnej i Bariatrycznej z Pododdziałem Chirurgii Onkologicznej w Grudziądzu, gdzie kwalifikuję i leczę pacjentów z otyłością oraz chorobami nowotworowymi. Swoją praktykę zawodową łączę z indywidualnym podejściem do pacjenta, zapewniając kompleksową opiekę przed i pooperacyjną.",
+        experience: [
+            "Absolwent Collegium Medicum Uniwersytetu Mikołaja Kopernika w Toruniu",
+            "Specjalista chirurgii ogólnej i onkologicznej",
+            "Asystent w Oddziale Chirurgii Ogólnej i Bariatrycznej z Pododdziałem Chirurgii Onkologicznej, Regionalny Szpital Specjalistyczny w Grudziądzu",
+            "Doświadczenie zawodowe zdobywałem również w 10. Wojskowym Szpitalu Klinicznym w Bydgoszczy oraz w Bydgoskim Centrum Onkologii",
+            "Członek Polskiego Towarzystwa Chirurgów Polskich (TCHP) – Sekcja Bariatryczna i Wideochirurgii",
+            "Członek międzynarodowego towarzystwa leczenia otyłości (IFSO)",
+            "Uczestnik licznych szkoleń i staży naukowych we Włoszech, Niemczech, Norwegii, Holandii i Belgii"
+        ],
+        services: [
+            "Leczenie otyłości – kwalifikacja, leczenie chirurgiczne i opieka po zabiegu",
+            "Konsultacja z zakresu chirurgii ogólnej i onkologicznej",
+            "Leczenie chirurgiczne nowotworów przewodu pokarmowego i tarczycy",
+            "Leczenie chirurgiczne przepuklin"
+        ]
+    },
+    "tomasz-purwin": {
+        name: "dr n. med. Tomasz Purwin",
+        specialty: "Androlog / Urolog",
+        image: "zdj/P.Tomasz Purwin.webp",
+        description: "Jestem specjalistą urologiem FEBU oraz certyfikowanym andrologiem PTA i EAA, a także lekarzem medycyny seksualnej FECSM. W codziennej praktyce zajmuję się diagnostyką i leczeniem chorób układu moczowo-płciowego, zaburzeń erekcji, niepłodności męskiej oraz zaburzeń hormonalnych. Specjalizuję się w chirurgii prącia i moszny, a także w kompleksowej opiece andrologicznej i urologicznej. Moim celem jest poprawa jakości życia seksualnego i ogólnego samopoczucia pacjentów.",
+        experience: [
+            "Specjalista urolog FEBU (Fellow of the European Board of Urology)",
+            "Certyfikat z andrologii klinicznej PTA i EAA",
+            "Lekarz medycyny seksualnej FECSM (Fellow of the European Committee of Sexual Medicine)",
+            "Wieloletnia praktyka w diagnostyce i leczeniu schorzeń urologicznych i andrologicznych",
+            "Doświadczenie w chirurgii prącia, moszny i zaburzeniach płodności męskiej"
+        ],
+        services: [
+            "Konsultacje urologiczne i andrologiczne",
+            "Diagnostyka USG układu moczowo-płciowego",
+            "Leczenie farmakologiczne zaburzeń erekcji i hormonalnych",
+            "Leczenie chirurgiczne zaburzeń erekcji, niepłodności i schorzeń prącia i moszny",
+            "Kompleksowa chirurgia andrologiczna"
+        ],
+        preparation: [
+            "Przygotuj listę objawów i problemów zdrowotnych",
+            "Zbierz aktualne wyniki badań: moczu, krwi, USG, hormonalne (testosteron, LH, FSH, prolaktyna), nasienia",
+            "Spisz listę przyjmowanych leków",
+            "Urolog: przyjdź z pełnym pęcherzem i zadbaną higieną miejsc intymnych",
+            "Androlog: przygotuj informacje o zdrowiu seksualnym i historii chorób"
+        ]
+    },
+    "agnieszka-skopowska": {
+        name: "dr n. o zdr. Agnieszka Skopowska",
+        specialty: "Urofizjoterapeutka",
+        image: "zdj/DraAgnieszkaSkopkowska.jpg",
+        description: "Jestem fizjoterapeutką z 15-letnim doświadczeniem, specjalizującą się w problemach uroginekologicznych (w tym seksuologicznych) i stomatologicznych. Posiadam ponad 20-letnie doświadczenie jako wykładowczyni. Jestem providerem metody TRE® oraz uczestniczką 2-letniego szkolenia pracy z traumą poprzez ciało w nurcie Soma Embodiment® (SE), opierając pracę na teorii poliwagalnej. Moje kompetencje rozwijałam na ok. 60 szkoleniach i kursach doskonalących, obejmujących techniki osteopatyczne, manualne, terapię powięziową i wisceralną, Touch for Health® oraz akupunkturę.",
+        experience: [
+            "15 lat praktyki fizjoterapeutycznej, w tym uroginekologicznej i stomatologicznej",
+            "Wykładowczyni z 20-letnim doświadczeniem",
+            "Provider metody TRE® oraz szkolenie Soma Embodiment® (SE)",
+            "Szkolenia z terapii manualnej, powięziowej, wisceralnej, Touch for Health® i akupunktury",
+            "Praca z pacjentami w szpitalach, szkołach rodzenia, hospicjum, ośrodkach rehabilitacyjnych oraz ze sportowcami"
+        ],
+        services: [
+            "Fizjoterapia urologiczna dla mężczyzn – wsparcie w nietrzymaniu moczu, bólu i zaburzeniach erekcji",
+            "Fizjoterapia uroginekologiczna dla kobiet – pomoc przy nietrzymaniu moczu, obniżeniu narządów miednicy, bólu w obrębie miednicy",
+            "Terapia blizn po operacjach i porodach – redukcja bólu, poprawa elastyczności i ruchomości tkanek",
+            "Terapia wisceralna – łagodzenie dolegliwości bólowych brzucha i zaburzeń ze strony narządów wewnętrznych",
+            "Terapia stawów skroniowo-żuchwowych – leczenie bólu żuchwy, napięć mięśni twarzy i zgrzytania zębami",
+            "Fizjoterapia relaksacyjna – redukcja skutków przewlekłego stresu i napięcia nerwowego",
+            "Masaż leczniczy – wspomaganie leczenia bólu kręgosłupa i stawów"
+        ],
+        preparation: [
+            "Zachowanie podstawowych zasad higieny",
+            "Wygodna bielizna (u mężczyzn najlepiej bokserki przylegające do ciała)",
+            "W przypadku wizyty z badaniem uro-, procto- lub ginekologicznym: wcześniejsze wypróżnienie się i pusty pęcherz moczowy"
+        ]
+    },
+    "laura-ptaszynska": {
+        name: "Laura Ptaszyńska",
+        specialty: "Lic. Pielęgniarstwa",
+        image: "zdj/Laura.webp",
+        description: "Jestem licencjonowaną pielęgniarką z doświadczeniem w pracy w punkcie pobrań i laboratorium diagnostycznym. Specjalizuję się w pobieraniu krwi u dorosłych i dzieci. Zapewniam bezpieczne, szybkie i komfortowe pobranie krwi w przyjaznej atmosferze, z zachowaniem najwyższych standardów higieny i sterylności.",
+        experience: [
+            "Licencjonowana pielęgniarka",
+            "Doświadczenie w pracy w punkcie pobrań i laboratorium diagnostycznym",
+            "Specjalizacja w pobieraniu krwi u dorosłych i dzieci"
+        ],
+        services: [
+            "Bezpieczne i komfortowe pobieranie krwi",
+            "Pobieranie krwi u dorosłych i dzieci",
+            "Zachowanie najwyższych standardów higieny i sterylności"
+        ]
+    },
+    "bartosz-sankowski": {
+        name: "lek. Bartosz Sankowski",
+        specialty: "Ginekolog",
+        image: "zdj/lek.BartoszSankowski.jpg",
+        description: "Jestem absolwentem Wydziału Lekarskiego Collegium Medicum im. L. Rydygiera w Bydgoszczy. Praktykę w zakresie ginekologii i położnictwa rozpocząłem w Klinice Medycyny Matczyno-Płodowej, Ginekologii i Neonatologii Wielospecjalistycznego Szpitala Miejskiego w Bydgoszczy, gdzie pracuję do dziś. Zajmuję się diagnostyką i leczeniem schorzeń ginekologicznych i uroginekologicznych oraz prowadzeniem ciąży prawidłowej i powikłanej. Posiadam liczne certyfikaty z zakresu ginekologii i położnictwa i jestem aktywnym członkiem Polskiego Towarzystwa Ginekologów i Położników.",
+        experience: [
+            "Praktyka w Klinice Medycyny Matczyno-Płodowej, Ginekologii i Neonatologii",
+            "Certyfikaty z zakresu ginekologii i położnictwa",
+            "Aktywny członek Polskiego Towarzystwa Ginekologów i Położników",
+            "Diagnostyka i leczenie schorzeń ginekologicznych i uroginekologicznych",
+            "Prowadzenie ciąży prawidłowej i powikłanej, ultrasonografia ginekologiczno-położnicza"
+        ],
+        services: [
+            "Konsultacje ginekologiczne i położnicze",
+            "USG ginekologiczno-położnicze",
+            "Cytologia płynna (w tym HPV, CINtec Plus)",
+            "Wymazy bakteriologiczno-mykologiczne",
+            "Drobne zabiegi ginekologiczne",
+            "Założenie wkładki domacicznej"
+        ]
+    },
+    "katarzyna-babiarz": {
+        name: "lek. Katarzyna Babiarz",
+        specialty: "Dermatolog / Wenerolog",
+        image: "zdj/P.Kasia.webp",
+        description: "Jestem absolwentką Wydziału Wojskowo-Lekarskiego Uniwersytetu Medycznego w Łodzi. Zajmuję się diagnostyką i leczeniem chorób dermatologicznych dzieci i dorosłych, w tym chorób zakaźnych, zapalnych, nowotworowych oraz problemów takich jak trądzik, łysienie czy łuszczyca. Jestem członkiem Polskiego Towarzystwa Dermatologicznego i regularnie uczestniczę w szkoleniach i konferencjach, by stosować leczenie oparte na dowodach naukowych.",
+        experience: [
+            "Diagnostyka i leczenie chorób dermatologicznych dzieci i dorosłych",
+            "Członek Polskiego Towarzystwa Dermatologicznego",
+            "Badania dermatoskopowe barwnikowych zmian skórnych",
+            "Zabiegi z zakresu elektrochirurgii i kriochirurgii (usuwanie włókniaków, brodawek)",
+            "Regularne uczestnictwo w szkoleniach i konferencjach z dermatologii klinicznej"
+        ],
+        services: [
+            "Diagnostyka i leczenie chorób dermatologicznych",
+            "Badania dermatoskopowe znamion i pieprzyków",
+            "Zabiegi z zakresu elektrochirurgii i kriochirurgii w tym usuwanie włókniaków i brodawek",
+            "Konsultacje dermatologiczne dla dzieci i dorosłych"
+        ],
+        preparation: [
+            "Przygotuj listę leków, które obecnie zażywasz lub stosowałeś na problemy dermatologiczne",
+            "Zabierz aktualne wyniki badań laboratoryjnych oraz dokumentację medyczną związaną z problemem skóry",
+            "W przypadku badania znamion: ubierz się w ubrania, które można łatwo zdjąć",
+            "Na wizytę nie nakładaj makijażu na twarz"
+        ]
+    },
+    "katarzyna-plotta-jazdzewska": {
+        name: "lek. Katarzyna Plotta-Jażdzewska",
+        specialty: "Endokrynolog",
+        image: "zdj/lek.KatarzynaPlotta-Jażdzewska.jpg",
+        description: "Jestem specjalistką endokrynologii, absolwentką Wydziału Lekarskiego Gdańskiego Uniwersytetu Medycznego. Doświadczenie zawodowe zdobywałam m.in. w Wojewódzkim Szpitalu Zespolonym w Białymstoku oraz w Szpitalu Uniwersyteckim nr 1 w Bydgoszczy, gdzie w 2023 r. uzyskałam tytuł specjalisty. Zajmuję się diagnostyką i leczeniem chorób tarczycy, przytarczyć, przysadki oraz zaburzeń metabolicznych, w tym otyłości. W pracy stawiam na partnerską relację z pacjentem i nowoczesne, indywidualne podejście terapeutyczne.",
+        experience: [
+            "Specjalista endokrynologii (2023 r.)",
+            "Doświadczenie w leczeniu chorób tarczycy, przytarczyć, przysadki i zaburzeń hormonalnych",
+            "Uczestniczka krajowych kursów i konferencji z zakresu endokrynologii",
+            "Certyfikaty z diagnostyki USG tarczycy",
+            "Stałe doskonalenie wiedzy i umiejętności klinicznych"
+        ],
+        services: [
+            "Konsultacje endokrynologiczne",
+            "Diagnostyka i leczenie chorób tarczycy, przytarczyć, przysadki i nadnerczy",
+            "Konsultacje z USG tarczycy",
+            "Leczenie otyłości oraz zaburzeń hormonalnych"
+        ],
+        preparation: [
+            "Przygotuj wcześniejszą dokumentację medyczną, jeśli taką posiadasz",
+            "Zabierz listę stosowanych na stałe leków",
+            "W razie badań USG tarczycy – zalecenia co do stroju komfortowego dla badania"
+        ]
+    },
+    "krzysztof-karpinski": {
+        name: "lek. Krzysztof Karpinski",
+        specialty: "Chirurg ogólny, Bariatra",
+        image: "zdj/lek.KrzysztofKarpinski.jpg",
+        description: "Jestem specjalistą chirurgii ogólnej, absolwentem kierunku lekarskiego Collegium Medicum w Bydgoszczy Uniwersytetu Mikołaja Kopernika w Toruniu. Doświadczenie zawodowe zdobywałem w 10 Wojskowym Szpitalu Klinicznym w Bydgoszczy oraz w Regionalnym Szpitalu Specjalistycznym w Grudziądzu, gdzie uzyskałem tytuł specjalisty. Na co dzień zajmuję się kwalifikacją i leczeniem pacjentów z otyłością, w tym przygotowaniem oraz wykonywaniem operacji bariatrycznych. W pracy stawiam na rzetelną diagnostykę, bezpieczeństwo i indywidualne podejście do każdego pacjenta.",
+        experience: [
+            "Specjalista chirurgii ogólnej",
+            "Wieloletnie doświadczenie w chirurgii bariatrycznej i onkologicznej",
+            "Praktyka w kwalifikacji i leczeniu pacjentów z otyłością",
+            "Leczenie chorób pęcherzyka żółciowego i przepuklin jamy brzusznej",
+            "Uczestnik licznych szkoleń i konferencji krajowych oraz międzynarodowych z zakresu chirurgii bariatrycznej"
+        ],
+        services: [
+            "Leczenie otyłości farmakologiczne i operacyjne",
+            "Przygotowanie pacjenta do operacji bariatrycznej oraz opieka pooperacyjna",
+            "Chirurgiczne leczenie chorób pęcherzyka żółciowego",
+            "Leczenie przepuklin w obrębie jamy brzusznej i pachwin"
+        ],
+        preparation: [
+            "Przygotuj informacje o chorobach przewlekłych i przebytych operacjach",
+            "Zabierz listę aktualnie przyjmowanych leków",
+            "W razie potrzeby wcześniejsze wyniki badań laboratoryjnych i obrazowych"
+        ]
+    },
+    "maciej-tarczynski": {
+        name: "lek. Maciej Tarczyński",
+        specialty: "Chirurg ogólny",
+        image: "zdj/lek.MaciejTarczynski.jpg",
+        description: "Jestem absolwentem Wydziału Lekarskiego Collegium Medicum im. L. Rydygiera w Bydgoszczy. Przez 12 lat pracowałem jako chirurg w Klinice Chirurgii 10 Wojskowego Szpitala Klinicznego w Bydgoszczy, gdzie zdobyłem specjalizację z chirurgii ogólnej. Obecnie pracuję w Oddziale Klinicznym Chirurgii Onkologicznej w Centrum Onkologii w Bydgoszczy. W swojej codziennej pracy kładę nacisk na dokładną diagnostykę, bezpieczeństwo pacjenta oraz skuteczność leczenia zabiegowego.",
+        experience: [
+            "Specjalista chirurgii ogólnej",
+            "12 lat doświadczenia klinicznego w 10 Wojskowym Szpitalu Klinicznym w Bydgoszczy",
+            "Obecnie: chirurg w Centrum Onkologii im. prof. Franciszka Łukaszczyka w Bydgoszczy",
+            "Członek Towarzystwa Chirurgów Polskich",
+            "Uczestnik licznych szkoleń i kursów w zakresu chirurgii ogólnej i onkologicznej",
+            "Szczególne zainteresowania: nowotwory przewodu pokarmowego, chirurgia pęcherzyka żółciowego, przepuklin i tarczycy"
+        ],
+        services: [
+            "Konsultacje chirurgiczne",
+            "Leczenie zmian ropnych skóry, zastrzałów, zanokcicy kończyn",
+            "Wycinanie znamion barwnikowych, tłuszczaków i kaszaków",
+            "Nacjęcie ropnia i leczenie stanów zapalnych skóry",
+            "Kontrola gojenia się rany i usuwanie szwów"
+        ]
+    },
+    "olaf-wojtowicz": {
+        name: "lek. Olaf Wojtowicz",
+        specialty: "Radiolog (w trakcie specjalizacji)",
+        image: "zdj/lek.OlafWojtowicz.jpg",
+        description: "Jestem absolwentem Wydziału Lekarskiego Pomorskiego Uniwersytetu Medycznego w Szczecinie. Doświadczenie zawodowe zdobywałem w Szpitalu Uniwersyteckim nr 2 im. dr. Jurasza w Bydgoszczy, gdzie pełniłem także funkcję asystenta w Katedrze Radiologii Collegium Medicum UMK. Obecnie pracuję w Oddziale Radiologii w Nowym Szpitalu w Świeciu. W pracy koncentruję się na diagnostyce ultrasonograficznej (USG) oraz stale podnoszę swoje kwalifikacje w zakresie obrazowania narządów wewnętrznych.",
+        experience: [
+            "Lekarz w trakcie specjalizacji z radiologii",
+            "Asystent w Katedrze Radiologii Collegium Medicum UMK (doświadczenie akademickie)",
+            "Obecnie: Oddział Radiologii – Nowy Szpital w Świeciu",
+            "Członek Polskiego Lekarskiego Towarzystwa Radiologicznego (PLTR)",
+            "Uczestnik licznych kursów i szkoleń, m.in. z zakresu USG Doppler oraz USG piersi"
+        ],
+        services: [
+            "USG / doppler naczyń wątroby (ocena krążenia wotnego)",
+            "USG / doppler żył kończyn dolnych",
+            "USG Doppler tętnic kończyn dolnych",
+            "USG doppler tętnic szyjnych i kręgowych",
+            "USG jamy brzusznej",
+            "USG piersi",
+            "USG pachwiny",
+            "USG nerek i pęcherza moczowego",
+            "USG tarczycy",
+            "USG ślinianek",
+            "USG węzłów chłonnych",
+            "USG jąder",
+            "USG tkanek miękkich",
+            "USG jam opłucnowych"
+        ],
+        preparation: [
+            "USG jamy brzusznej – na czczo przez minimum 6 godzin oraz z pełnym pęcherzem moczowym",
+            "Warto przynieść wcześniejsze wyniki badań obrazowych (USG, TK, RM) tej samej okolicy"
+        ]
+    },
+    "patryk-niekraszewicz": {
+        name: "lek. Patryk Niekraszewicz",
+        specialty: "Urolog (w trakcie specjalizacji)",
+        image: "zdj/lek.PatrykNiekraszewicz.jpg",
+        description: "Jestem lekarzem w trakcie specjalizacji z urologii, którą realizuję w Oddziale Klinicznym Urologii i Onkologii Urologicznej 10. Wojskowego Szpitala Klinicznego w Bydgoszczy. Specjalizuję się w diagnostyce i leczeniu chorób układu moczowego u kobiet i mężczyzn. W pracy stawiam na rzetelną diagnostykę, indywidualne podejście do pacjenta i nowoczesne metody leczenia. Zależy mi, aby każdy pacjent czuł się komfortowo i miał pełne zaufanie do procesu diagnostycznego i terapeutycznego.",
+        experience: [
+            "Absolwent Wydziału Lekarskiego Collegium Medicum Uniwersytetu Mikołaja Kopernika w Bydgoszczy",
+            "Staż podyplomowy odbyty w Szpitalu Uniwersyteckim im. Jana Biziela oraz w 10. Wojskowym Szpitalu Klinicznym w Bydgoszczy",
+            "Lekarz w trakcie specjalizacji z urologii w Oddziale Klinicznym Urologii i Onkologii Urologicznej 10. Wojskowego Szpitala Klinicznego",
+            "Ukończone kursy diagnostyki ultrasonograficznej (USG) układu moczowego oraz moszny",
+            "Uczestnik licznych szkoleń i konferencji naukowych z zakresu urologii i andrologii"
+        ],
+        services: [
+            "Konsultacja urologiczna",
+            "Badania USG układu moczowego i moszny",
+            "Biopsje prostaty i pęcherza",
+            "Drobne zabiegi ambulatoryjne, w tym obrzeżanie"
+        ],
+        preparation: [
+            "Zabierz na wizytę dotychczasową dokumentację medyczną – karty informacyjne z leczenia szpitalnego, opisów wyników badań obrazowych (jeśli były wykonywane)",
+            "Zbierz informacje o przebytych chorobach oraz aktualnie przyjmowanych leków",
+            "W przypadku planowanego badania USG układu moczowego – umiarkowane nawodnienie i nieopróżnianie pęcherza przed wizytą"
+        ]
+    },
+    "pawel-gordon": {
+        name: "lek. Paweł Gordon",
+        specialty: "Kardiolog",
+        image: "zdj/lek.PawełGordon.jpg",
+        description: "Jestem kardiologiem z wieloletnim doświadczeniem klinicznym. Specjalizuję się w diagnostyce i leczeniu chorób układu krążenia oraz prowadzeniu konsultacji przed zabiegami operacyjnymi. W codziennej praktyce wykorzystuję nowoczesne metody diagnostyczne, w tym echokardiografię i badania Holter EKG i RR. Systematycznie poszerzam swoją wiedzę, uczestnicząc w szkoleniach i konferencjach naukowych.",
+        experience: [
+            "Absolwent Wydziału Lekarskiego Collegium Medicum w Bydgoszczy, Uniwersytetu Mikołaja Kopernika w Toruniu",
+            "Specjalista kardiolog od 2015 roku, szkolenie specjalizacyjne odbyłem w 10 Wojskowym Szpitalu Klinicznym z Polikliniką w Bydgoszczy",
+            "Wieloletnie doświadczenie kliniczne w diagnostyce i leczeniu chorób układu sercowo-naczyniowego (Klinika Kardiologii 10 WSK)",
+            "Współpraca z placówkami lecznictwa ambulatoryjnego, wykładowca akademicki, członek Polskiego Towarzystwa Kardiologicznego"
+        ],
+        services: [
+            "Kompleksowa diagnostyka i leczenie chorób układu krążenia",
+            "Konsultacje kardiologiczne przed zabiegami operacyjnymi niekardiologicznymi",
+            "Badania echokardiograficzne",
+            "Analiza badań całodobowej rejestracji EKG (Holter EKG) oraz ciśnienia tętniczego (Holter RR)"
+        ]
+    },
+    "adam-kaminski": {
+        name: "mgr Adam Kamiński",
+        specialty: "Psycholog / Terapeuta EMDR / Trener",
+        image: "zdj/mgr.AdamKamiński.jpg",
+        description: "Jestem psychologiem z wieloletnim doświadczeniem w pracy terapeutycznej. Specjalizuję się w terapii traumy, zaburzeń osobowości oraz skutków długotrwałego stresu. W pracy wykorzystuję terapię EMDR – uznaną przez WHO za jedną z najskuteczniejszych metod leczenia stresu pourazowego. Wspieram pacjentów w procesie leczenia otyłości, pomagając przygotować się psychicznie do zmian oraz odnaleźć równowagę emocjonalną.",
+        experience: [
+            "Certyfikowany terapeuta EMDR (Europejskie Towarzystwo EMDR)",
+            "Ukończone Trenerskie Studia Podyplomowe WSG w Bydgoszczy",
+            "Kurs Krótkoterminowej Eklektycznej Terapii PTSD (BEPP)",
+            "Certyfikowany Trener ART i Treningu Zastępowania Agresji",
+            "Szkolenia z zakresu diagnozy osobowości i narzędzi psychometrycznych"
+        ],
+        services: [
+            "przygotowanie psychologiczne do leczenia bariatrycznego",
+            "wspieranie w budowaniu samooceny i akceptacji własnego ciała",
+            "redukcja skutków długotrwałego stresu",
+            "pomoc w radzeniu sobie z traumą i trudnymi doświadczeniami",
+            "wspieranie w odzyskaniu równowagi emocjonalnej i wewnętrznego spokoju"
+        ]
+    },
+    "anita-szyszkowicz": {
+        name: "mgr Anita Szyszkowicz",
+        specialty: "Psycholog / Seksuolog / Psychotraumatolog",
+        image: "zdj/mgr.AnitaSzyszkowicz.jpg",
+        description: "Jestem psychologiem, seksuologiem oraz psychotraumatologiem. Ukończyłam psychologię na Uniwersytecie Kazimierza Wielkiego w Bydgoszczy oraz studia podyplomowe z psychotraumatologii i seksuologii klinicznej. Doświadczenie zdobywałam w Poradni Seksuologicznej i Patologii Współżycia w Warszawie, Centrum Seksuologii w Sopocie, szpitalu psychiatrycznym oraz podczas współpracy z Resortem Obrony Narodowej. W pracy kieruję się empatią i autentycznością, wspierając pacjentów w odzyskiwaniu równowagi emocjonalnej, budowaniu akceptacji siebie i satysfakcji w relacjach.",
+        experience: [
+            "Absolwentka Uniwersytetu Kazimierza Wielkiego w Bydgoszczy",
+            "Studia podyplomowe z psychotraumatologii oraz seksuologii klinicznej",
+            "W trakcie 4-letniego szkolenia z psychoterapii poznawczo-behawioralnej (SWPS Sopot)",
+            "Doświadczenie kliniczne m.in. w: Poradni Seksuologicznej i Patologii Współżycia w Warszawie, Centrum Seksuologii w Sopocie, szpitalu psychiatrycznym",
+            "Praca z osobami neuroatypowymi, pacjentami w kryzysie emocjonalnym oraz po doświadczeniach traumatycznych"
+        ],
+        services: [
+            "Terapia indywidualna i partnerska w obszarze zaburzeń seksualnych",
+            "Wsparcie psychologiczne w kryzysach emocjonalnych i traumie",
+            "Edukacja i psychoedukacja seksualna",
+            "Pomoc w trudnościach z libido, erekcją, wytryskiem oraz w obniżeniu satysfakcji seksualnej",
+            "Praca nad emocjami i komunikacją w relacjach intymnych"
+        ],
+        preparation: [
+            "Przed pierwszym spotkaniem warto zastanowić się, z jakim problemem chcesz się zgłosić",
+            "Możesz przygotować notatki dotyczące swojego samopoczucia, objawów i historii problemu",
+            "Jeśli wcześniej korzystałeś z pomocy psychologicznej lub psychiatrycznej – zabierz notatki, diagnozy lub listę przyjmowanych leków",
+            "Pamiętaj, że pierwsze spotkanie ma charakter konsultacyjny – to czas, by spokojnie omówić Twoje potrzeby"
+        ]
+    },
+    "hanna-sikorska": {
+        name: "mgr Hanna Sikorska",
+        specialty: "Dietetyk",
+        image: "zdj/mgr.HannaSikorska.jpg",
+        description: "Jestem dietetykiem z wieloletnim doświadczeniem w pracy klinicznej oraz w opiece nad pacjentami bariatrycznymi. Na co dzień wspieram pacjentów w procesie zmiany nawyków żywieniowych, leczeniu otyłości oraz w dietoterapii chorób. Moim celem jest pomoc w osiągnięciu trwałej poprawy zdrowia i jakości życia poprzez indywidualnie dobrane rozwiązacje żywieniowe.",
+        experience: [
+            "Magister Dietetyki – Collegium Medicum UMK w Bydgoszczy",
+            "Wieloletnie doświadczenie w pracy klinicznej (Szpital Uniwersytecki nr 1, 10 Wojskowy Szpital Kliniczny)",
+            "Członek Zespołu Chirurgii Bariatrycznej prof. K. Leksowskiego",
+            "Specjalizacja w zakresie leczenia żywieniowego, dietoterapii chorób i przygotowania pacjentów do zabiegów bariatrycznych",
+            "Uczestniczka licznych konferencji i szkoleń z zakresu otyłości, niedożywienia i żywienia klinicznego"
+        ],
+        services: [
+            "przygotowanie do operacji bariatrycznej oraz opieka dietetyczna po zabiegu",
+            "dietoterapia chorób dietozależnych (m.in. choroby układu pokarmowego, tarczycy, choroby nowotworowe, niedożywienie)",
+            "wsparcie w leczeniu otyłości i wprowadzaniu zdrowych nawyków żywieniowych",
+            "edukacja żywieniowa i tworzenie indywidualnych planów dietetycznych"
+        ]
+    }
+};
+
+        // Card functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.specialist-card');
+            const modal = document.getElementById('specialist-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Card click event
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('btn')) return;
+                    
+                    const specialistId = this.getAttribute('data-id');
+                    openSpecialistModal(specialistId);
+                });
+            });
+            
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const specialistCards = document.querySelectorAll('.specialist-card-container');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    specialistCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.classList.add('fade-in');
+                            }, 10);
+                        } else {
+                            card.classList.remove('fade-in');
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Modal functionality
+            function openSpecialistModal(specialistId) {
+                const specialist = specialistsData[specialistId];
+                
+                if (!specialist) {
+                    // If no data, redirect to separate page
+                    window.location.href = `specialist.html?id=${specialistId}`;
+                    return;
+                }
+                
+                modalTitle.textContent = specialist.name;
+                
+                let modalContent = `
+                    <div class="modal-specialist-info">
+                        <div class="modal-img">
+                            <img src="${specialist.image}" alt="${specialist.name}">
+                        </div>
+                        <div class="modal-details">
+                            <h3>${specialist.specialty}</h3>
+                            <p>${specialist.description}</p>
+                            
+                            <h4>Doświadczenie i kwalifikacje:</h4>
+                            <ul>
+                                ${specialist.experience.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                            
+                            <h4>Zakres pomocy i leczenia:</h4>
+                            <ul>
+                                ${specialist.services.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                `;
+                
+                if (specialist.preparation) {
+                    modalContent += `
+                            <h4>Przygotowanie do wizyty:</h4>
+                            <ul>
+                                ${specialist.preparation.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                    `;
+                }
+                
+                modalContent += `
+                        </div>
+                    </div>
+                `;
+                
+                modalBody.innerHTML = modalContent;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -2303,171 +3186,11 @@
             });
         });
 
-        // Nowy automatyczny slider dla sekcji About
-        function initAboutSlider() {
-            const slides = document.querySelectorAll('.about-slide');
-            const indicators = document.querySelectorAll('.slider-indicator');
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            
-            function showSlide(index) {
-                // Ukryj wszystkie slajdy
-                slides.forEach(slide => {
-                    slide.classList.remove('active', 'prev', 'next');
-                });
-                
-                // Pokaż aktualny slajd
-                slides[index].classList.add('active');
-                
-                // Ustaw poprzedni i następny slajd dla płynnych przejść
-                const prevIndex = (index - 1 + totalSlides) % totalSlides;
-                const nextIndex = (index + 1) % totalSlides;
-                
-                slides[prevIndex].classList.add('prev');
-                slides[nextIndex].classList.add('next');
-                
-                // Aktualizuj wskaźniki
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
-                
-                currentSlide = index;
-            }
-            
-            function nextSlide() {
-                showSlide((currentSlide + 1) % totalSlides);
-            }
-            
-            // Event listeners dla wskaźników
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-            
-            // Auto slide co 5 sekund
-            let slideInterval = setInterval(nextSlide, 5000);
-            
-            // Pauzuj auto slide przy najechaniu
-            const slider = document.querySelector('.about-slider-container');
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-            
-            slider.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-            
-            // Inicjalizacja
-            showSlide(0);
-        }
-
-        // Nowy automatyczny slider dla sekcji For Men - tło zmienia się w section
-        function initForMenSlider() {
-            const bgSlides = document.querySelectorAll('.for-men-bg-slide');
-            const contentSlides = document.querySelectorAll('.for-men-slide');
-            const indicators = document.querySelectorAll('.for-men-indicator');
-            let currentSlide = 0;
-            const totalSlides = bgSlides.length;
-            
-            function showSlide(index) {
-                // Ukryj wszystkie slajdy tła
-                bgSlides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-                
-                // Ukryj wszystkie slajdy treści
-                contentSlides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-                
-                // Pokaż aktualny slajd tła
-                bgSlides[index].classList.add('active');
-                
-                // Pokaż aktualny slajd treści
-                contentSlides[index].classList.add('active');
-                
-                // Aktualizuj wskaźniki
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
-                
-                currentSlide = index;
-            }
-            
-            function nextSlide() {
-                showSlide((currentSlide + 1) % totalSlides);
-            }
-            
-            // Event listeners dla wskaźników
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-            
-            // Auto slide co 5 sekund
-            let slideInterval = setInterval(nextSlide, 5000);
-            
-            // Pauzuj auto slide przy najechaniu
-            const slider = document.querySelector('.for-men');
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-            
-            slider.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-            
-            // Inicjalizacja
-            showSlide(0);
-        }
-
-        // Reviews slider
-        const track = document.querySelector('.reviews-track');
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentIndex = 0;
-        
-        function showSlide(index) {
-            track.style.transform = `translateX(-${index * 100}%)`;
-            
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            
-            currentIndex = index;
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
-        
-        // Auto slide
-        setInterval(() => {
-            let nextIndex = (currentIndex + 1) % dots.length;
-            showSlide(nextIndex);
-        }, 5000);
-
         // Fade in animation on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         const serviceItems = document.querySelectorAll('.service-item');
-        const sections = document.querySelectorAll('.section');
         
-        function checkScroll() {
-            // Check sections
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionVisible = 150;
-                
-                if (sectionTop < window.innerHeight - sectionVisible) {
-                    section.classList.add('visible');
-                }
-            });
-            
-            // Check fade elements
+        function checkFade() {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
@@ -2490,8 +3213,8 @@
             });
         }
         
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2511,68 +3234,91 @@
             });
         });
 
-        // Specialists filter
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const specialistCardContainers = document.querySelectorAll('.specialist-card-container');
-        
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filter = btn.getAttribute('data-filter');
-                
-                specialistCardContainers.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Filter from dropdown menu
-        const dropdownFilterLinks = document.querySelectorAll('.dropdown-menu a[data-filter]');
-        dropdownFilterLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const filter = this.getAttribute('data-filter');
-                
-                // Find and click the corresponding filter button
-                filterBtns.forEach(btn => {
-                    if (btn.getAttribute('data-filter') === filter) {
-                        btn.click();
-                    }
-                });
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                    mobileToggle.textContent = '☰';
-                }
-            });
-        });
-
-
-        // Dodaj ten kod do swojego pliku JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            const specialistCards = document.querySelectorAll('.specialist-card');
+        // About section slider
+        function initAboutSlider() {
+            const slides = document.querySelectorAll('.about-slide');
+            const indicators = document.querySelectorAll('.slider-indicator');
+            let currentSlide = 0;
             
-            specialistCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.classList.toggle('flipped');
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'prev', 'next');
+                });
+                
+                // Show current slide
+                slides[index].classList.add('active');
+                
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                });
+                
+                currentSlide = index;
+            }
+            
+            // Auto slide
+            setInterval(() => {
+                let nextSlide = (currentSlide + 1) % slides.length;
+                showSlide(nextSlide);
+            }, 5000);
+            
+            // Indicator click
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
                 });
             });
-        });
+        }
+
+        // For Men section slider
+        function initForMenSlider() {
+            const bgSlides = document.querySelectorAll('.for-men-bg-slide');
+            const slides = document.querySelectorAll('.for-men-slide');
+            const indicators = document.querySelectorAll('.for-men-indicator');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Hide all background slides
+                bgSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Show current slide and background
+                slides[index].classList.add('active');
+                bgSlides[index].classList.add('active');
+                
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                });
+                
+                currentSlide = index;
+            }
+            
+            // Auto slide
+            setInterval(() => {
+                let nextSlide = (currentSlide + 1) % slides.length;
+                showSlide(nextSlide);
+            }, 7000);
+            
+            // Indicator click
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+        }
 
         // Initialize sliders when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initAboutSlider();
             initForMenSlider();
-            checkScroll(); // Check initial scroll position
         });
     </script>
 </body>
