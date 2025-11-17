@@ -9,3 +9,4 @@ DO zweryfikowania:
 do poprawienia:
 -pobrac wszystkie załączniki i uzywać lokalnie, a nie linkować dalej z srv.seohost
 -komentowac w miare mozliwosci
+-responsywka i layout do telefonu
