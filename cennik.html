@@ -21,6 +21,7 @@
             --transition: all 0.3s ease;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
             --border-radius: 8px;
+            --highlight: #ffeb3b;
         }
         
         * {
@@ -325,6 +326,7 @@
             padding: 15px 30px;
             text-align: left;
             border-bottom: 1px solid #e9ecef;
+            transition: var(--transition);
         }
         
         .price-table tr:hover {
@@ -347,26 +349,167 @@
             color: var(--primary);
         }
         
+        /* Podświetlenie kategorii */
+        .highlighted-category {
+            animation: highlightPulse 2s ease-in-out;
+        }
+        
+        .highlighted-row {
+            background-color: rgba(255, 235, 59, 0.2) !important;
+            border-left: 4px solid var(--highlight);
+            animation: rowHighlight 3s ease-in-out;
+        }
+        
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 101, 255, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 235, 59, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 235, 59, 0); }
+        }
+        
+        @keyframes rowHighlight {
+            0% { background-color: rgba(38, 88, 183, 0.8); }
+            100% { background-color: rgba(255, 235, 59, 0.2); }
+        }
+             
         /* Footer */
         footer {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2b5a 100%);
             color: var(--white);
-            padding: 50px 0 20px;
-            margin-top: 80px;
+            padding: 60px 0 0;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--white));
         }
         
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
             margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        
+        .footer-col h4 {
+            font-family: 'Michroma', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact {
+            list-style: none;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--secondary);
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact span {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-map {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container {
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding: 30px 0;
             border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
+        
         
         @media (max-width: 768px) {
             .mobile-menu-btn {
@@ -422,18 +565,18 @@
             
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">O nas</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">O nas</a></li>
                     <li class="dropdown">
-                        <a href="#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
+                        <a href="index.html#specialists">Specjaliści <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#specialists" data-filter="all">Wszyscy</a></li>
-                            <li><a href="#specialists" data-filter="lekarz">Lekarze</a></li>
-                            <li><a href="#specialists" data-filter="psycholog">Psycholodzy</a></li>
-                            <li><a href="#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
-                            <li><a href="#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
-                            <li><a href="#specialists" data-filter="diagnosta">Diagności</a></li>
-                            <li><a href="#specialists" data-filter="dietetyk">Dietetycy</a></li>
+                            <li><a href="index.html#specialists" data-filter="all">Wszyscy</a></li>
+                            <li><a href="index.html#specialists" data-filter="lekarz">Lekarze</a></li>
+                            <li><a href="index.html#specialists" data-filter="psycholog">Psycholodzy</a></li>
+                            <li><a href="index.html#specialists" data-filter="fizjoterapeuta">Fizjoterapeuci</a></li>
+                            <li><a href="index.html#specialists" data-filter="pielęgniarka">Pielęgniarki</a></li>
+                            <li><a href="index.html#specialists" data-filter="diagnosta">Diagności</a></li>
+                            <li><a href="index.html#specialists" data-filter="dietetyk">Dietetycy</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -444,11 +587,10 @@
                             <li><a href="urorehabilitacja.html">Urorehabilitacja</a></li>
                         </ul>
                     </li>
-                    <li><a href="#formen">Dla Mężczyzn</a></li>
-                    <li><a href="cennik.html">Cennik</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
-                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic"></a></li>
-                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="index.html#formen">Dla Mężczyzn</a></li>
+                    <li><a href="cennik.html" class="active">Cennik</a></li>
+                    <li><a href="index.html#contact">Kontakt</a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">FAQ</a></li>
                 </ul>
             </nav>
         </div>
@@ -464,7 +606,7 @@
             
             <div class="pricing-accordion">
                 <!-- Andrologia -->
-                <div class="accordion-item active">
+                <div class="accordion-item" id="andrologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -529,7 +671,7 @@
                 </div>
                 
                 <!-- Seksuologia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="seksuologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -578,7 +720,7 @@
                 </div>
                 
                 <!-- Urologia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="urologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -627,7 +769,7 @@
                 </div>
                 
                 <!-- Kardiologia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="kardiologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -672,7 +814,7 @@
                 </div>
                 
                 <!-- Fizjoterapia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="fizjoterapia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -717,7 +859,7 @@
                 </div>
                 
                 <!-- Ginekologia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="ginekologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -758,7 +900,7 @@
                 </div>
                 
                 <!-- Psychologia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="psychologia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -787,7 +929,7 @@
                 </div>
                 
                 <!-- Chirurgia -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="chirurgia">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -832,7 +974,7 @@
                 </div>
                 
                 <!-- Diagnostyka -->
-                <div class="accordion-item">
+                <div class="accordion-item" id="diagnostyka">
                     <div class="accordion-header">
                         <div class="accordion-title">
                             <div class="accordion-icon">
@@ -847,9 +989,21 @@
                     <div class="accordion-content">
                         <table class="price-table">
                             <tbody>
-                                <tr>
+                                <tr id="laboratoryjne">
+                                    <td class="service-name">Badania laboratoryjne - pakiet podstawowy</td>
+                                    <td class="service-price">150 zł</td>
+                                </tr>
+                                <tr id="usg">
                                     <td class="service-name">USG jamy brzusznej</td>
                                     <td class="service-price">250 zł</td>
+                                </tr>
+                                <tr id="nasienie">
+                                    <td class="service-name">Badanie nasienia</td>
+                                    <td class="service-price">250 zł</td>
+                                </tr>
+                                <tr id="nieplodnosc">
+                                    <td class="service-name">Diagnostyka niepłodności męskiej - pakiet rozszerzony</td>
+                                    <td class="service-price">800 zł</td>
                                 </tr>
                                 <tr>
                                     <td class="service-name">USG ślinianek</td>
@@ -879,23 +1033,131 @@
                         </table>
                     </div>
                 </div>
+                
+                <!-- Bariatria -->
+                <div class="accordion-item" id="bariatria">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <div class="accordion-icon">
+                                <i class="fas fa-weight-scale"></i>
+                            </div>
+                            Bariatria
+                        </div>
+                        <div class="accordion-arrow">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <table class="price-table">
+                            <tbody>
+                                <tr>
+                                    <td class="service-name">Konsultacja bariatryczna</td>
+                                    <td class="service-price">300 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Konsultacja dietetyczna</td>
+                                    <td class="service-price">200 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Pakiet przygotowania do operacji bariatrycznej</td>
+                                    <td class="service-price">1 500 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Operacja zmniejszenia żołądka - sleeve gastrectomy</td>
+                                    <td class="service-price">od 15 000 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Operacja by-pass żołądkowy</td>
+                                    <td class="service-price">od 20 000 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Założenie balonu żołądkowego</td>
+                                    <td class="service-price">od 8 000 zł</td>
+                                </tr>
+                                <tr>
+                                    <td class="service-name">Kontrola pooperacyjna</td>
+                                    <td class="service-price">200 zł</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+  <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <h4>Garbary Clinic</h4>
-                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną.</p>
+                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną na najwyższym poziomie.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/p/Centrum-Medyczne-Garbary-Clinic-61572890159023/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/garbary_clinic" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
+                
+                <div class="footer-col">
+                    <h4>Usługi</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Andrologia</a></li>
+                        <li><a href="#">Chirurgia</a></li>
+                        <li><a href="#">Dermatologia</a></li>
+                        <li><a href="#">Endokrynologia</a></li>
+                        <li><a href="#">Kardiologia</a></li>
+                        <li><a href="#">Psychologia</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Przydatne linki</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">O nas</a></li>
+                        <li><a href="#specialists">Specjaliści</a></li>
+                        <li><a href="">Oferta</a></li>
+                        <li><a href="#formen">Dla Mężczyzn</a></li>
+                        <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">Blog</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-col">
                     <h4>Kontakt</h4>
-                    <p>ul. Garbary 5/LU3, 85-229 Bydgoszcz<br>+48 570 555 050<br>kontakt@garbaryclinic.pl</p>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>ul. Garbary 5/LU3, 85-229 Bydgoszcz</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+48 570 555 050</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>kontakt@garbaryclinic.pl</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Pn-Pt: 8:00 - 20:00<br>Sb: 9:00 - 14:00</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        
+        <!-- Map Section in Footer -->
+        <div class="footer-map">
+            <div class="map-container">
+                <div style="position:relative; aspect-ratio:16/9; width:100%; max-height:320px; overflow:hidden; border-radius:12px;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d738.1396217909672!2d17.99268411992651!3d53.12722890072944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313942cfd1d5d%3A0xbeea999cce514cc8!2sGarbary%20Clinic!5e1!3m2!1spl!2spl!4v1752409997790!5m2!1spl!2spl" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
             <div class="footer-bottom">
                 <p>&copy; 2025 Garbary Clinic. Wszelkie prawa zastrzeżone.</p>
             </div>
@@ -932,6 +1194,60 @@
                     header.classList.remove('scrolled');
                 }
             });
+            
+            // Podświetlanie kategorii po przekierowaniu
+            const highlightCategory = localStorage.getItem('highlightCategory');
+            if (highlightCategory) {
+                // Usuwamy zapisaną kategorię
+                localStorage.removeItem('highlightCategory');
+                
+                // Otwieramy i podświetlamy odpowiednią kategorię
+                setTimeout(() => {
+                    const targetElement = document.getElementById(highlightCategory);
+                    if (targetElement) {
+                        // Otwieramy akordeon
+                        targetElement.classList.add('active');
+                        
+                        // Dodajemy klasę podświetlenia
+                        targetElement.classList.add('highlighted-category');
+                        
+                        // Przewijamy do elementu
+                        targetElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center'
+                        });
+                        
+                        // Usuwamy podświetlenie po 3 sekundach
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlighted-category');
+                        }, 3000);
+                    }
+                }, 500);
+            }
+            
+            // Podświetlanie konkretnych wierszy w diagnostyce
+            const urlParams = new URLSearchParams(window.location.search);
+            const highlightRow = urlParams.get('highlight');
+            if (highlightRow) {
+                setTimeout(() => {
+                    const targetRow = document.getElementById(highlightRow);
+                    if (targetRow) {
+                        targetRow.classList.add('highlighted-row');
+                        
+                        // Otwieramy kategorię diagnostyki
+                        const diagnostykaSection = document.getElementById('diagnostyka');
+                        if (diagnostykaSection) {
+                            diagnostykaSection.classList.add('active');
+                        }
+                        
+                        // Przewijamy do wiersza
+                        targetRow.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center'
+                        });
+                    }
+                }, 800);
+            }
         });
     </script>
 </body>

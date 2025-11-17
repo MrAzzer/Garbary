@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service Bar - Garbary Clinic</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+    :root {
+        --primary: #082f61;
+        --primary-dark: #0d2b5a;
+        --primary-light: #2a6fd6;
+        --secondary: #00a3e0;
+        --accent: #1b82ff63;
+        --light: #f8f9fa;
+        --dark: #0a355e;
+        --gray: #6c757d;
+        --light-gray: #e9ecef;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        --transition: all 0.3s ease;
+        --border-radius: 8px;
+        --primary-blue: #335ea0;
+        --accent-gold: #ffffffde;
+        --transition-slow: all 0.6s ease;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--dark);
+        background: var(--white);
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    /* SERVICES BAR STYLES */
+    .services-bar {
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-blue) 3%, #16568ab7 50%, var(--primary-blue) 97%,  var(--primary-light) 100%);
+        padding: 8px 0;
+        position: relative;
+        overflow: hidden;
+        animation: gradientFlow 8s ease-in-out infinite;
+    }
+
+    .services-wrapper {
+        display: flex;
+        width: max-content;
+    }
+
+    .services-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        padding-bottom: 0px;
+        animation: scrollInfinitely 40s linear infinite;
+    }
+
+    .services-container:hover {
+        animation-play-state: paused;
+    }
+
+    .services-container::after {
+        content: '';
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .services-container:hover ~ .services-bar {
+        animation-duration: 3s;
+    }
+
+    .services-container .service-item:nth-child(n) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex: 0 0 auto;
+        min-width: 250px;
+        padding: 0 0px;
+        height: 120%;
+    }
+
+    @keyframes scrollInfinitely {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-150px * 5 - 20px * 5));
+        }
+    }
+
+    @keyframes gradientFlow {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .service-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex: 0 0 auto;
+        min-width: 50px;
+        padding: 0 5px;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: var(--transition-slow);
+        height: 100%;
+    }
+
+    .service-item.visible {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .service-icon {
+        height: 35px;
+        margin-bottom: 8px;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-item:hover .service-icon {
+        transform: translateY(-5px);
+    }
+
+    .service-text {
+        color: var(--white);
+        font-family: 'Raleway', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 500;
+        line-height: 1.1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .services-container {
+            justify-content: flex-start;
+        }
+        
+        .service-item {
+            min-width: 140px;
+            flex: 0 0 auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .services-container {
+            justify-content: flex-start;
+        }
+        
+        .service-item {
+            width: auto;
+            max-width: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .services-container {
+            padding: 0 10px;
+        }
+        
+        .service-item {
+            min-width: 120px;
+            padding: 0 8px;
+        }
+        
+        .service-text {
+            font-size: 0.7rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Services Bar -->
+    <section class="services-bar">
+        <div class="container">
+            <div class="services-wrapper">
+                <div class="services-container">
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/gabinety_specjalistyczne.png" alt="Gabinety specjalistyczne" class="service-icon">
+                        <p class="service-text">Gabinety specjalistyczne</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/zabiegi_chirurgiczne.png" alt="Zabiegi chirurgiczne" class="service-icon">
+                        <p class="service-text">Chirurgia jednego dnia</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/punkt_pobran.png" alt="Punkt pobrań" class="service-icon">
+                        <p class="service-text">Punkt pobrań</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/badanie_nasienia_m.png" alt="Badanie nasienia" class="service-icon">
+                        <p class="service-text">Badanie nasienia</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/Rehabilitacja_andr-uro.png" alt="Rehabilitacja andrologiczno-urologiczna" class="service-icon">
+                        <p class="service-text">Rehabilitacja andrologiczno-urologiczna</p>
+                    </div>
+                    
+                    <!-- Duplikaty -->
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/gabinety_specjalistyczne.png" alt="Gabinety specjalistyczne" class="service-icon">
+                        <p class="service-text">Gabinety specjalistyczne</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/zabiegi_chirurgiczne.png" alt="Zabiegi chirurgiczne" class="service-icon">
+                        <p class="service-text">Chirurgia jednego dnia</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/punkt_pobran.png" alt="Punkt pobrań" class="service-icon">
+                        <p class="service-text">Punkt pobrań</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/badanie_nasienia_m.png" alt="Badanie nasienia" class="service-icon">
+                        <p class="service-text">Badanie nasienia</p>
+                    </div>
+                    
+                    <div class="service-item visible">
+                        <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/09/Rehabilitacja_andr-uro.png" alt="Rehabilitacja andrologiczno-urologiczna" class="service-icon">
+                        <p class="service-text">Rehabilitacja andrologiczno-urologiczna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fade in animation on scroll dla service items
+        const serviceItems = document.querySelectorAll('.service-item');
+        
+        function checkFade() {
+            serviceItems.forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                const itemVisible = 100;
+                
+                if (itemTop < window.innerHeight - itemVisible) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+    </script>
+</body>
+</html>

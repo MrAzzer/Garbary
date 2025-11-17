@@ -281,16 +281,16 @@
             position: relative;
             padding-left: 35px;
             line-height: 1.6;
+            list-style: none;
         }
         
         .content-text li:before {
-            content: '✓';
+            content: '';
+            list-style: none;
             position: absolute;
             left: 0;
-            color: var(--secondary);
             font-weight: bold;
             font-size: 1.3rem;
-            background: rgba(0, 163, 224, 0.1);
             width: 28px;
             height: 28px;
             border-radius: 50%;
@@ -515,10 +515,12 @@
         }
         
         /* ===================== FOOTER ===================== */
+     
+        /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary) 0%, #0d2b5a 100%);
             color: var(--white);
-            padding: 60px 0 20px;
+            padding: 60px 0 0;
             position: relative;
         }
         
@@ -533,10 +535,17 @@
         }
         
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 50px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             margin-bottom: 40px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
         }
         
         .footer-col h4 {
@@ -563,6 +572,47 @@
             margin-bottom: 15px;
         }
         
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact {
+            list-style: none;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--secondary);
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact span {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
         .social-links {
             display: flex;
             gap: 15px;
@@ -587,13 +637,24 @@
             transform: translateY(-3px);
         }
         
+        .footer-map {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container {
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding: 30px 0;
             border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.9rem;
             opacity: 0.8;
         }
+        
         
         /* ===================== RESPONSYWNOŚĆ ===================== */
         @media (max-width: 1200px) {
@@ -712,8 +773,7 @@
                     <li><a href="index.html#formen">Dla Mężczyzn</a></li>
                     <li><a href="cennik.html">Cennik</a></li>
                     <li><a href="index.html#contact">Kontakt</a></li>
-                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">ZnanyLekarz</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">FAQ</a></li>
                 </ul>
             </nav>
         </div>
@@ -731,18 +791,10 @@
                 <div class="content-text">
                     <h2>Specjalistyczna rehabilitacja urologiczna</h2>
                     <p>Urorehabilitacja to nowoczesna dziedzina fizjoterapii zajmująca się diagnozowaniem i leczeniem dysfunkcji układu moczowo-płciowego. Nasze holistyczne podejście łączy najskuteczniejsze metody terapeutyczne z indywidualnie dopasowanym programem rehabilitacji.</p>
-                    <ul>
-                        <li>Terapia mięśni dna miednicy</li>
-                        <li>Leczenie nietrzymania moczu</li>
-                        <li>Rehabilitacja po zabiegach urologicznych</li>
-                        <li>Terapia zaburzeń erekcji</li>
-                        <li>Rehabilitacja poporodowa</li>
-                        <li>Leczenie bólu w obrębie miednicy</li>
-                    </ul>
                     <a href="index.html#contact" class="card-button">Umów konsultację</a>
                 </div>
                 <div class="content-image">
-                    <img src="https://srv88227.seohost.com.pl/wp-content/uploads/2025/07/urorehabilitacja.webp" alt="Urorehabilitacja - nowoczesna rehabilitacja urologiczna" onerror="this.src='https://via.placeholder.com/600x400/082f61/ffffff?text=Urorehabilitacja+Garbary+Clinic'">
+                    <img src="zdj/urorehabilitacja.webp" alt="Urorehabilitacja - nowoczesna rehabilitacja urologiczna" onerror="this.src='https://via.placeholder.com/600x400/082f61/ffffff?text=Urorehabilitacja+Garbary+Clinic'">
                 </div>
             </div>
             
@@ -831,11 +883,6 @@
                     <a href="index.html#specialists" class="card-button">Poznaj specjalistów</a>
                 </div>
                 
-                <div class="info-card">
-                    <h3>Nowoczesne Metody</h3>
-                    <p>Stosujemy najnowocześniejsze metody rehabilitacji, w tym biofeedback, elektrostymulację, terapię manualną i indywidualnie dobrane ćwiczenia.</p>
-                    <a href="faq.html#metody" class="card-button">Dowiedz się więcej</a>
-                </div>
             </div>
         </div>
     </section>
@@ -846,25 +893,73 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h4>Garbary Clinic</h4>
-                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną na najwyższym poziomie w Bydgoszczy.</p>
+                    <p>Nowoczesne centrum medyczne oferujące kompleksową opiekę zdrowotną na najwyższym poziomie.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/p/Centrum-Medyczne-Garbary-Clinic-61572890159023/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/garbary_clinic" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+                
+                <div class="footer-col">
+                    <h4>Usługi</h4>
+                    <ul class="footer-links">
+                        <li><a href="cennik.html#andrologia">Andrologia</a></li>
+                        <li><a href="cennik.html#chirurgia">Chirurgia</a></li>
+                        <li><a href="cennik.html#dermatologia">Dermatologia</a></li>
+                        <li><a href="cennik.html#endokrynologia">Endokrynologia</a></li>
+                        <li><a href="cennik.html#kardiologia">Kardiologia</a></li>
+                        <li><a href="cennik.html#psychologia">Psychologia</a></li>
+                        <li><a href="cennik.html#bariatria">Bariatria</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Przydatne linki</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">O nas</a></li>
+                        <li><a href="#specialists">Specjaliści</a></li>
+                        <li><a href="">Oferta</a></li>
+                        <li><a href="#formen">Dla Mężczyzn</a></li>
+                        <li><a href="https://www.znanylekarz.pl/placowki/garbary-clinic">Blog</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-col">
                     <h4>Kontakt</h4>
-                    <p><strong>Adres:</strong><br>ul. Garbary 5/LU3<br>85-229 Bydgoszcz</p>
-                    <p><strong>Telefon:</strong><br>+48 570 555 050</p>
-                    <p><strong>Email:</strong><br>kontakt@garbaryclinic.pl</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Godziny otwarcia</h4>
-                    <p><strong>Poniedziałek - Piątek:</strong><br>8:00 - 20:00</p>
-                    <p><strong>Sobota:</strong><br>9:00 - 14:00</p>
-                    <p><strong>Niedziela:</strong><br>Zamknięte</p>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>ul. Garbary 5/LU3, 85-229 Bydgoszcz</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+48 570 555 050</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>kontakt@garbaryclinic.pl</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Pn-Pt: 8:00 - 20:00<br>Sb: 9:00 - 14:00</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        
+        <!-- Map Section in Footer -->
+        <div class="footer-map">
+            <div class="map-container">
+                <div style="position:relative; aspect-ratio:16/9; width:100%; max-height:320px; overflow:hidden; border-radius:12px;">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d738.1396217909672!2d17.99268411992651!3d53.12722890072944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313942cfd1d5d%3A0xbeea999cce514cc8!2sGarbary%20Clinic!5e1!3m2!1spl!2spl!4v1752409997790!5m2!1spl!2spl" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
             <div class="footer-bottom">
                 <p>&copy; 2025 Garbary Clinic. Wszelkie prawa zastrzeżone.</p>
             </div>
